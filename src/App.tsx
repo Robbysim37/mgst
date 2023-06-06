@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import NavBar from './components/navBar/NavBar';
+import PageBackground from "./components/styledComponents/PageBackground"
+import {Box,Typography} from "@mui/material"
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar></NavBar>
+      <PageBackground>
+        <Box sx={{height:"50%",width:"50%",bgcolor:"primary.dark"}}>
+          <Typography>Maple Grove Student Tracker</Typography>
+        </Box>
+      </PageBackground>
     </div>
   );
 }
