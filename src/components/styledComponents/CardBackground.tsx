@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import "../../hidden-scroll-wheel.css"
 
 interface Props {
     children?: React.ReactNode;
@@ -6,7 +7,10 @@ interface Props {
 
 const CardBackground: React.FC<Props> = (props) => {
     return(
-        <Box sx={{
+        <Box 
+        component={"div"}
+        className="container"
+        sx={{
         height:"90%",
         width:"95%",
         backgroundColor:"rgba(0,0,0,.5)",
