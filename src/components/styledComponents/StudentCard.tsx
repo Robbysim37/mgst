@@ -1,17 +1,27 @@
 import { Card,Typography } from "@mui/material";
 
+type Student = {
+    firstName:string,
+    lastName:string,
+    schedule:string,
+    grade:number,
+    cohort:number
+}
+
 interface Props {
     children?: React.ReactNode;
+    student: Student;
 }
 
 const StudentCard: React.FC<Props> = (props) => {
+
     return(
         <Card sx={{
         height:"20%",
         width:"20%",
-        margin:"2%",
+        margin:"2.5%",
         borderRadius:"30px"}}>
-            <Typography>Card</Typography>
+            <Typography>{props.student.firstName}</Typography>
         </Card>
     )
 }
