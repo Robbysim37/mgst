@@ -2,6 +2,7 @@ import { studentList } from "../../dummyData/fakeStudents"
 import StudentCard from "../styledComponents/StudentCard"
 import CardBackground from "../styledComponents/CardBackground"
 import StudentSearch from "../styledComponents/StudentSearch"
+import { filterStudents } from "../../logic/filterLogic"
 
 import { useState } from "react"
 
@@ -12,6 +13,8 @@ const StudentCards = () => {
         lastName:"",
         grade:0
     })
+
+    filterStudents(studentList,filters)
 
     return(
         <CardBackground>

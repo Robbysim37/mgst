@@ -101,7 +101,7 @@ const studentList = [
     },
     {
         firstName:"Patrick",
-        lastName:"Batman",
+        lastName:"Bateman",
         schedule:"placeholder",
         grade:4,
         cohort:2023
