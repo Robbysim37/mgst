@@ -2,7 +2,7 @@
 
 const studentList = [
     {
-        firstName:"ben",
+        firstName:"Ben",
         lastName:"Stiller",
         schedule:"placeholder",
         grade: 1,
@@ -101,7 +101,7 @@ const studentList = [
     },
     {
         firstName:"Patrick",
-        lastName:"Batman",
+        lastName:"Bateman",
         schedule:"placeholder",
         grade:4,
         cohort:2023
@@ -117,14 +117,14 @@ const studentList = [
         firstName:"Simon",
         lastName:"Belmont",
         schedule:"placeholder",
-        grade:4,
+        grade:3,
         cohort:2023
     },
     {
         firstName:"Richter",
         lastName:"Belmont",
         schedule:"placeholder",
-        grade:4,
+        grade:3,
         cohort:2023
     },
     {
@@ -138,7 +138,7 @@ const studentList = [
         firstName:"Samus",
         lastName:"Aran",
         schedule:"placeholder",
-        grade:4,
+        grade:3,
         cohort:2023
     }
 ]

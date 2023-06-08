@@ -4,7 +4,7 @@ import { useState,useEffect } from "react"
 type Filters = {
     firstName:String,
     lastName:String,
-    grade:Number
+    grade:String
 }
 
 interface Props {
@@ -26,7 +26,12 @@ const StudentSearchDropdown:React.FC<Props> = (props) => {
     }
 
     return(
-        <TextField sx={{marginRight:"5%",backgroundColor:"primary.light"}}
+        <TextField
+        InputProps={{
+            disableUnderline: true
+          }}
+        size="small"
+        sx={{marginRight:"10%",backgroundColor:"primary.light"}}
         select value={grade} onChange={changeGrade}>
             <MenuItem value={"0"}>All Grades</MenuItem>
             <MenuItem value={"1"}>Grade 1</MenuItem>

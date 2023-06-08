@@ -6,7 +6,7 @@ import { Box } from "@mui/material"
 type Filters = {
     firstName:String,
     lastName:String,
-    grade:Number
+    grade:String
 }
 
 interface Props {

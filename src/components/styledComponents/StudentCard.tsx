@@ -21,7 +21,7 @@ const StudentCard: React.FC<Props> = (props) => {
         width:"20%",
         margin:"2.5%",
         borderRadius:"30px"}}>
-            <Typography>{props.student.firstName}</Typography>
+            <Typography>{`${props.student.firstName} ${props.student.lastName} ${props.student.grade}`}</Typography>
         </Card>
     )
 }
