@@ -3,7 +3,7 @@ import { TextField } from "@mui/material"
 type Filters = {
     firstName:String,
     lastName:String,
-    grade:Number
+    grade:String
 }
 
 interface Props {
@@ -26,8 +26,11 @@ const StudentSearchText: React.FC<Props> = (props) => {
         onChange={searchByName}
         label={props.label}
         variant="filled" 
+        InputProps={{
+            disableUnderline: true
+          }}
         size="small"
-        sx={{backgroundColor:"primary.light"}}/>
+        sx={{backgroundColor:"primary.light",borderRadius:"30px"}}/>
     )
 }
 

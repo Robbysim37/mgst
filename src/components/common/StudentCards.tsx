@@ -11,10 +11,8 @@ const StudentCards = () => {
     const [filters,setFilters] = useState({
         firstName:"",
         lastName:"",
-        grade:0
+        grade:"0"
     })
-
-    filterStudents(studentList,filters)
 
     return(
         <CardBackground>
@@ -22,7 +20,7 @@ const StudentCards = () => {
             {/* div below this line is meant to create space to stop
                 cards from getting covered by searchbar */}
             <div style={{height:"10%",width:"100%"}}></div>
-            {studentList.map(currStudent => {return(
+            {filterStudents(studentList,filters).map(currStudent => {return(
                 <StudentCard key={Math.random()} student={currStudent} />
             )})}
         </CardBackground>
