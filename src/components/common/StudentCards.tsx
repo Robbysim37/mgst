@@ -3,15 +3,24 @@ import StudentCard from "../styledComponents/StudentCard"
 import CardBackground from "../styledComponents/CardBackground"
 import StudentSearch from "../styledComponents/StudentSearch"
 
+import { useState } from "react"
+
 const StudentCards = () => {
+
+    const [filters,setFilters] = useState({
+        firstName:"",
+        lastName:"",
+        grade:0
+    })
+
     return(
         <CardBackground>
-            <StudentSearch/>
+            <StudentSearch filters={filters} setFilters={setFilters}/>
             {/* div below this line is meant to create space to stop
                 cards from getting covered by searchbar */}
             <div style={{height:"10%",width:"100%"}}></div>
             {studentList.map(currStudent => {return(
-                <StudentCard student={currStudent} />
+                <StudentCard key={Math.random()} student={currStudent} />
             )})}
         </CardBackground>
     )

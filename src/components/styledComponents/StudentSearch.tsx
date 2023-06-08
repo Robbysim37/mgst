@@ -3,7 +3,18 @@ import StudentSearchDropdown from "./StudentSearchDropdown"
 
 import { Box } from "@mui/material"
 
-const StudentSearch = () => {
+type Filters = {
+    firstName:String,
+    lastName:String,
+    grade:Number
+}
+
+interface Props {
+    setFilters: Function
+    filters:Filters
+}
+
+const StudentSearch:React.FC<Props> = (props) => {
     return (
     <Box sx={{
         height:"10%",
@@ -18,15 +29,17 @@ const StudentSearch = () => {
         <Box sx={{width:"50%",display:"flex",
         justifyContent:"space-evenly",alignItems:"center"}}>
 
-        <StudentSearchText label="Firstname"/>
-        <StudentSearchText label="Lastname"/>
+        <StudentSearchText id="firstName" label="Firstname" 
+        filters={props.filters} setFilters={props.setFilters}/>
+        <StudentSearchText id="lastName" label="Lastname" 
+        filters={props.filters} setFilters={props.setFilters}/>
 
         </Box>
 
         <Box sx={{width:"50%",display:"flex",
         justifyContent:"flex-end",alignItems:"center"}}>
 
-            <StudentSearchDropdown></StudentSearchDropdown>
+            <StudentSearchDropdown  filters={props.filters} setFilters={props.setFilters}/>
 
         </Box>
         

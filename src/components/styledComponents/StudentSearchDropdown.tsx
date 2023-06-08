@@ -1,18 +1,39 @@
-import { Select,MenuItem } from "@mui/material"
-import {useState} from "react"
+import { TextField,MenuItem } from "@mui/material"
+import { useState,useEffect } from "react"
 
-const StudentSearchDropdown:React.FC = () => {
+type Filters = {
+    firstName:String,
+    lastName:String,
+    grade:Number
+}
 
-    const [grade,setGrade] = useState("all-grades")
+interface Props {
+    setFilters:Function
+    filters:Filters
+}
+
+const StudentSearchDropdown:React.FC<Props> = (props) => {
+
+    const [grade,setGrade] = useState("0")
+
+    useEffect(()=>{
+        props.setFilters({...props.filters,grade:grade})
+        console.log(props.filters)
+    },[grade])
+
+    const changeGrade = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setGrade(e.target.value)
+    }
 
     return(
-        <Select sx={{marginRight:"5%",backgroundColor:"primary.light"}} value={grade} labelId="grade" label="Grade">
-            <MenuItem value={"all-grades"}>All Grades</MenuItem>
-            <MenuItem value={"Grade-1"} >Grade 1</MenuItem>
-            <MenuItem value={"Grade 2"}>Grade 2</MenuItem>
-            <MenuItem value={"Grade 3"}>Grade 3</MenuItem>
-            <MenuItem value={"Grade 4"}>Grade 4</MenuItem>
-        </Select>
+        <TextField sx={{marginRight:"5%",backgroundColor:"primary.light"}}
+        select value={grade} onChange={changeGrade}>
+            <MenuItem value={"0"}>All Grades</MenuItem>
+            <MenuItem value={"1"}>Grade 1</MenuItem>
+            <MenuItem value={"2"}>Grade 2</MenuItem>
+            <MenuItem value={"3"}>Grade 3</MenuItem>
+            <MenuItem value={"4"}>Grade 4</MenuItem>
+        </TextField>
     )
 }
 

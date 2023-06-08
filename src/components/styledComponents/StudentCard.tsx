@@ -15,7 +15,6 @@ interface Props {
 
 const StudentCard: React.FC<Props> = (props) => {
 
-    console.log(props)
     return(
         <Card sx={{
         height:"20%",
