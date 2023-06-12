@@ -5,6 +5,9 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
+import { Provider } from 'react-redux';
+import { store } from './store';
+
 
 const theme = createTheme({
   palette:{
@@ -24,9 +27,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );
