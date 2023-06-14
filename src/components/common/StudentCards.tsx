@@ -4,11 +4,24 @@ import StudentCard from "../styledComponents/StudentCard"
 import CardBackground from "../styledComponents/CardBackground"
 import StudentSearch from "../styledComponents/StudentSearch"
 import { filterStudents } from "../../logic/filterLogic"
-import axios from "axios"
+import axios, {AxiosResponse} from "axios"
+import { useAppDispatch } from "../../state/store"
+import { updateStudentList } from "../../state/reducers/studentsSlice"
 
 import { useState } from "react"
 
+
 const StudentCards = () => {
+
+    const dispatch = useAppDispatch()
+
+    type Student = {
+        firstName:string,
+        lastName:string,
+        schedule:string,
+        grade:number,
+        cohort:number
+    }
 
     const [filters,setFilters] = useState({
         firstName:"",
@@ -17,8 +30,10 @@ const StudentCards = () => {
     })
 
     useEffect(() => {
-        axios("http://localhost:8000").then(promise => {
+        axios.get<Array<Student>>("http://localhost:8000")
+        .then(promise => {
             console.log(promise.data)
+            dispatch(updateStudentList(promise))
         })
     })
 
