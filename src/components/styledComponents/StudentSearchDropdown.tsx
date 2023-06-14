@@ -18,7 +18,6 @@ const StudentSearchDropdown:React.FC<Props> = (props) => {
 
     useEffect(()=>{
         props.setFilters({...props.filters,grade:grade})
-        console.log(props.filters)
     },[grade])
 
     const changeGrade = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +26,6 @@ const StudentSearchDropdown:React.FC<Props> = (props) => {
 
     return(
         <TextField
-        InputProps={{
-            disableUnderline: true
-          }}
         size="small"
         sx={{marginRight:"10%",backgroundColor:"primary.light"}}
         select value={grade} onChange={changeGrade}>
