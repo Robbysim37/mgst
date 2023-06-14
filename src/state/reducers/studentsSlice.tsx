@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 type Student = {
-    firstName:String,
-    lastName:String,
-    grade:Number,
-    cohort:Number
+    firstName:string,
+    lastName:string,
+    schedule:string,
+    grade:number,
+    cohort:number
 }
 
 export interface studentInitialState {

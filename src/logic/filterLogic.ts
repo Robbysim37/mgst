@@ -14,7 +14,9 @@ type Filters = {
 
 const filterStudents = (studentList:Array<Student>,filters:Filters) => {
 
-    studentList.sort((a,b) => {
+    let sortedStudents = [...studentList]
+
+     sortedStudents = sortedStudents.sort((a,b) => {
         if(a.lastName.toLowerCase() < b.lastName.toLowerCase()){
             return -1;
         }
@@ -25,7 +27,7 @@ const filterStudents = (studentList:Array<Student>,filters:Filters) => {
     })
 
     if(filters.firstName){
-        studentList = studentList.filter(student => {
+        sortedStudents = sortedStudents.filter(student => {
             if(student.firstName.toLowerCase()
             .includes(filters.firstName.toLowerCase())){
                 return true
@@ -36,7 +38,7 @@ const filterStudents = (studentList:Array<Student>,filters:Filters) => {
     }
 
     if(filters.lastName){
-        studentList = studentList.filter(student => {
+        sortedStudents = sortedStudents.filter(student => {
             if(student.lastName.toLowerCase()
             .includes(filters.lastName.toLowerCase())){
                 return true
@@ -47,7 +49,7 @@ const filterStudents = (studentList:Array<Student>,filters:Filters) => {
     }
 
     if(filters.grade !== "0"){
-        studentList = studentList.filter(student => {
+        sortedStudents = sortedStudents.filter(student => {
             if(student.grade.toString() === filters.grade){
                 return true
             }else{
@@ -56,7 +58,7 @@ const filterStudents = (studentList:Array<Student>,filters:Filters) => {
         })
     }
 
-    return studentList
+    return sortedStudents
 
 }
 
