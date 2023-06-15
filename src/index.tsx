@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from "./state/store"
 
 
 const theme = createTheme({
