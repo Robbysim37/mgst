@@ -1,5 +1,4 @@
 import {useEffect} from "react"
-import { studentList } from "../../dummyData/fakeStudents"
 import StudentCard from "../styledComponents/StudentCard"
 import CardBackground from "../styledComponents/CardBackground"
 import StudentSearch from "../styledComponents/StudentSearch"
@@ -36,7 +35,7 @@ const StudentCards = () => {
             console.log(promise.data)
             dispatch(updateStudentList(promise.data))
         })
-    })
+    },[])
 
     return(
         <CardBackground>
