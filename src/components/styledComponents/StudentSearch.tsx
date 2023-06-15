@@ -1,7 +1,7 @@
 import StudentSearchText from "./StudentSearchText"
 import StudentSearchDropdown from "./StudentSearchDropdown"
 
-import { Box } from "@mui/material"
+import { Box,Button } from "@mui/material"
 
 type Filters = {
     firstName:String,
@@ -33,14 +33,14 @@ const StudentSearch:React.FC<Props> = (props) => {
         filters={props.filters} setFilters={props.setFilters}/>
         <StudentSearchText id="lastName" label="Lastname" 
         filters={props.filters} setFilters={props.setFilters}/>
+        <StudentSearchDropdown  filters={props.filters} 
+        setFilters={props.setFilters}/>
 
         </Box>
 
         <Box sx={{width:"50%",display:"flex",
         justifyContent:"flex-end",alignItems:"center"}}>
-
-            <StudentSearchDropdown  filters={props.filters} setFilters={props.setFilters}/>
-
+            <Button  sx={{marginRight:"10%",bgcolor:"primary.light",color:"black"}}variant="contained">Add New Student</Button>
         </Box>
         
     </Box>
