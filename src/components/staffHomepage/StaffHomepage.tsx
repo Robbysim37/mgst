@@ -10,7 +10,7 @@ const StaffHomepage = () => {
 
     return(<>
         <StudentCards setStudentModal={setStudentModal}/>
-         {studentModal && <CreateStudentsModal/>}
+         {studentModal && <CreateStudentsModal setStudentModal={setStudentModal}/>}
     </>)
 }
 
