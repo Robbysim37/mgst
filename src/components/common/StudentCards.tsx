@@ -9,19 +9,23 @@ import { updateStudentList } from "../../state/reducers/studentsSlice"
 
 import { useState } from "react"
 
+interface Props {
+    children?:React.ReactNode
+    setStudentModal: Function
+}
 
-const StudentCards = () => {
+type Student = {
+    firstName:string,
+    lastName:string,
+    schedule:string,
+    grade:number,
+    cohort:number
+}
+
+const StudentCards:React.FC<Props> = (props) => {
 
     const dispatch = useAppDispatch()
     const students = useAppSelector(state => state.students.students)
-
-    type Student = {
-        firstName:string,
-        lastName:string,
-        schedule:string,
-        grade:number,
-        cohort:number
-    }
 
     const [filters,setFilters] = useState({
         firstName:"",
@@ -32,17 +36,20 @@ const StudentCards = () => {
     useEffect(() => {
         axios.get<Array<Student>>("http://localhost:8000")
         .then(promise => {
-            console.log(promise.data)
             dispatch(updateStudentList(promise.data))
         })
-    },[])
+    },[dispatch])
 
     return(
         <CardBackground>
-            <StudentSearch filters={filters} setFilters={setFilters}/>
+            <StudentSearch filters={filters} 
+            setFilters={setFilters} 
+            setStudentModal={props.setStudentModal} />
+
             {/* div below this line is meant to create space to stop
-                cards from getting covered by searchbar */}
+            cards from getting covered by searchbar */}
             <div style={{height:"10%",width:"100%"}}></div>
+
             {filterStudents(students,filters).map(currStudent => {return(
                 <StudentCard key={Math.random()} student={currStudent} />
             )})}

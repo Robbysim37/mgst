@@ -11,10 +11,16 @@ type Filters = {
 
 interface Props {
     setFilters: Function
+    setStudentModal: Function
     filters:Filters
 }
 
 const StudentSearch:React.FC<Props> = (props) => {
+
+    const openModal = (e:React.MouseEvent<HTMLButtonElement>) => {
+        props.setStudentModal(true)
+    }
+
     return (
     <Box sx={{
         height:"10%",
@@ -40,9 +46,12 @@ const StudentSearch:React.FC<Props> = (props) => {
 
         <Box sx={{width:"50%",display:"flex",
         justifyContent:"flex-end",alignItems:"center"}}>
-            <Button  sx={{marginRight:"10%",bgcolor:"primary.light",color:"black"}}variant="contained">Add New Student</Button>
+            <Button  sx={{marginRight:"10%",bgcolor:"primary.light",color:"black"}}
+            variant="contained" onClick={openModal}>
+                Add New Students
+                </Button>
         </Box>
-        
+
     </Box>
     )
 }
