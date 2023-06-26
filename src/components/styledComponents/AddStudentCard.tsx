@@ -1,4 +1,4 @@
-import { Card } from "@mui/material"
+import { Card, Typography } from "@mui/material"
 
 export default function AddStudentCard() {
   return (
@@ -7,7 +7,8 @@ export default function AddStudentCard() {
         height:"80%",
         width:"25%",
     }}>
-
+      <Typography>Add Student</Typography>
+      
     </Card>
   )
 }

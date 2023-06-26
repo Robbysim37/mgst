@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { Box,Typography } from "@mui/material"
 import ReactDOM from "react-dom"
 import InfoCard from "../styledComponents/AddStudentCard"
+import AddStudentCard from "../styledComponents/AddStudentCard"
+import AddByExcelCard from "../styledComponents/AddByExcelCard"
 
 const modalBG = {
     position:"fixed",
@@ -35,12 +37,11 @@ const CreateStudentsModal:React.FC<Props> = (props) => {
 
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
-        <InfoCard></InfoCard>
+        <AddStudentCard></AddStudentCard>
         <Typography sx={{color:'white',fontSize:"2rem"}}>
-            - Create student -<br/>
-            or<br/>
-            - upload student list -</Typography>
-        <InfoCard></InfoCard>
+          or
+        </Typography>
+        <AddByExcelCard></AddByExcelCard>
     </Box>,
     document.getElementById("portal")!
   )
