@@ -1,6 +1,9 @@
+import { useEffect } from "react"
 import { Box,Typography } from "@mui/material"
 import ReactDOM from "react-dom"
-import InfoCard from "../styledComponents/InfoCard"
+import InfoCard from "../styledComponents/AddStudentCard"
+import AddStudentCard from "../styledComponents/AddStudentCard"
+import AddByExcelCard from "../styledComponents/AddByExcelCard"
 
 const modalBG = {
     position:"fixed",
@@ -16,16 +19,32 @@ const modalBG = {
     textAlign:"center"
 }
 
-export default function CreateStudentsModal() {
+interface Props {
+  setStudentModal:Function
+}
+
+const CreateStudentsModal:React.FC<Props> = (props) => {
+
+  useEffect(() => {
+    const close = (e:KeyboardEvent) => {
+      if(e.keyCode === 27){
+        props.setStudentModal(false)
+      }
+    }
+    window.addEventListener('keydown', close)
+  return () => window.removeEventListener('keydown', close)
+  },[])
+
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
-        <InfoCard></InfoCard>
+        <AddStudentCard></AddStudentCard>
         <Typography sx={{color:'white',fontSize:"2rem"}}>
-            - Create student -<br/>
-            or<br/>
-            - upload student list -</Typography>
-        <InfoCard></InfoCard>
+          or
+        </Typography>
+        <AddByExcelCard></AddByExcelCard>
     </Box>,
     document.getElementById("portal")!
   )
 }
+
+export default CreateStudentsModal
