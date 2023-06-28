@@ -6,20 +6,13 @@ import { filterStudents } from "../../logic/filterLogic"
 import axios from "axios"
 import { useAppDispatch, useAppSelector } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
+import {Student} from "../../typeScriptDataTypes"
 
 import { useState } from "react"
 
 interface Props {
     children?:React.ReactNode
     setStudentModal: Function
-}
-
-type Student = {
-    firstName:string,
-    lastName:string,
-    schedule:string,
-    grade:number,
-    cohort:number
 }
 
 const StudentCards:React.FC<Props> = (props) => {

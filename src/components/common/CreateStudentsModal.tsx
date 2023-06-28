@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { Box,Typography } from "@mui/material"
 import ReactDOM from "react-dom"
-import InfoCard from "../styledComponents/AddStudentCard"
 import AddStudentCard from "../styledComponents/AddStudentCard"
 import AddByExcelCard from "../styledComponents/AddByExcelCard"
 

@@ -1,10 +1,4 @@
-type Student = {
-    firstName:string,
-    lastName:string,
-    schedule:string,
-    grade:number,
-    cohort:number
-}
+import { Student } from "../typeScriptDataTypes"
 
 type Filters = {
     firstName:String,

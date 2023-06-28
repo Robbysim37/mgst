@@ -1,12 +1,5 @@
 import { Card,Typography } from "@mui/material";
-
-type Student = {
-    firstName:string,
-    lastName:string,
-    schedule:string,
-    grade:number,
-    cohort:number
-}
+import {Student} from "../../typeScriptDataTypes"
 
 interface Props {
     children?: React.ReactNode;
