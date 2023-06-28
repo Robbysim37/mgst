@@ -37,7 +37,6 @@ const AddStudentCard:React.FC<Props> = (props) => {
           ...newStudentInfo,
           [e.target.id]:e.target.value
         })
-        console.log(newStudentInfo)
     }
   }
 

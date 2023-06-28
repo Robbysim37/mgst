@@ -14,7 +14,7 @@ interface Props {
     }
 
     const sendNewStudentInfo = (e:React.MouseEvent<HTMLButtonElement>) => {
-      axios.post('https://localhost:8000/newStudents',props.newStudentInfoArray)
+      axios.post('http://localhost:8000/newStudents',props.newStudentInfoArray)
       .then(response => {
         console.log(response)
       })
