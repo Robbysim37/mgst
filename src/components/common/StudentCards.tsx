@@ -35,8 +35,8 @@ const StudentCards:React.FC<Props> = (props) => {
 
     return(
         <CardBackground>
-            <StudentSearch filters={filters} 
-            setFilters={setFilters} 
+            <StudentSearch filters={filters}
+            setFilters={setFilters}
             setStudentModal={props.setStudentModal} />
 
             {/* div below this line is meant to create space to stop
