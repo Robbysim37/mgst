@@ -1,15 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-
-type Student = {
-    firstName:string,
-    lastName:string,
-    schedule:string,
-    grade:number,
-    cohort:number
-}
+import {Student} from "../../typeScriptDataTypes"
 
 export interface studentInitialState {
-    students: Student[]
+    students: Array<Student>
 }
 
 const initialState: studentInitialState = {
