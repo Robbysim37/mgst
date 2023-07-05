@@ -1,6 +1,6 @@
 import { useState } from "react";
-import StudentCards from "../common/StudentCards"
-import CreateStudentsModal from "../common/CreateStudentsModal";
+import StudentCards from "./StudentCards"
+import CreateStudentsModal from "./CreateStudentsModal";
 
 
 
