@@ -3,13 +3,13 @@ import "../../hidden-scroll-wheel.css"
 
 interface Props {
     children?: React.ReactNode;
+    component?: string;
+    className?: string;
   }
 
 const CardBackground: React.FC<Props> = (props) => {
     return(
         <Box 
-        component={"div"}
-        className="container"
         sx={{
         height:"90%",
         width:"95%",

@@ -34,7 +34,9 @@ const StudentCards:React.FC<Props> = (props) => {
     },[dispatch])
 
     return(
-        <CardBackground>
+        <CardBackground 
+        component={"div"}
+        className="container">
             <StudentSearch filters={filters}
             setFilters={setFilters}
             setStudentModal={props.setStudentModal} />
