@@ -3,7 +3,7 @@ import { useEffect,useState } from "react"
 import { useAppSelector } from "../../state/store"
 import { Student } from "../../typeScriptDataTypes"
 import StudentBasicInfo from "../styledComponents/StudentBasicInfo"
-import ScheduleDisplay from "../styledComponents/ScheduleDisplay"
+import ScheduleDisplay from "./scheduleDisplay/ScheduleDisplay"
 import { Stack } from "@mui/material"
 
 export default function StudentView() {

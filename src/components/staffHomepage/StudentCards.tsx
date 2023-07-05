@@ -1,12 +1,13 @@
 import {useEffect} from "react"
-import StudentCard from "../styledComponents/StudentCard"
-import CardBackground from "../styledComponents/CardBackground"
+import InfoCard from "../infoDisplayers/InfoCard"
+import InfoCardContainer from "../infoDisplayers/InfoCardContainer"
 import StudentSearch from "../styledComponents/StudentSearch"
 import { filterStudents } from "../../logic/filterLogic"
 import axios from "axios"
 import { useAppDispatch, useAppSelector } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
 import {Student} from "../../typeScriptDataTypes"
+import StudentCardInfo from "../infoToDisplay/StudentCardInfo"
 
 import { useState } from "react"
 
@@ -34,9 +35,14 @@ const StudentCards:React.FC<Props> = (props) => {
     },[dispatch])
 
     return(
-        <CardBackground 
+        <InfoCardContainer 
         component={"div"}
-        className="container">
+        className="container"
+        height="90%"
+        width="95%"
+        borderRadius="30px"
+        backgroundColor = {"rgba(0,0,0,.5)"}
+        >
             <StudentSearch filters={filters}
             setFilters={setFilters}
             setStudentModal={props.setStudentModal} />
@@ -46,9 +52,16 @@ const StudentCards:React.FC<Props> = (props) => {
             <div style={{height:"10%",width:"100%"}}></div>
 
             {filterStudents(students,filters).map(currStudent => {return(
-                <StudentCard key={Math.random()} student={currStudent} />
+                <InfoCard 
+                key={Math.random()} 
+                student={currStudent}
+                height="20%"
+                width="20%"
+                className="studentCard">
+                    <StudentCardInfo student={currStudent}/>
+                </InfoCard>
             )})}
-        </CardBackground>
+        </InfoCardContainer>
     )
 }
 
