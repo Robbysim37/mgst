@@ -27,24 +27,15 @@ export default function StudentView() {
 
   return (
     <>
-    <Stack height={"100%"} width={"100%"}>
-      <TabContext value={tabValue}>
-        <Box height={"10%"}
+        <Box height={"10vh"}
         width={"100%"}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
         sx={{backgroundColor:"rgba(0,0,0,.5)"}}>
-          <TabList onChange={tabChangeHandler}>
-            <Tab value="1" sx={{color:"white"}} label="Details"/>
-            <Tab value="2" sx={{color:"white"}} label="Schedule"/>
-          </TabList>
         </Box>
-        <TabPanel value="1"><StudentBasicInfo student={student}/></TabPanel>
-        <TabPanel value="2"><ScheduleDisplay schdeule={student?.schedule}/></TabPanel>
-      </TabContext>
-      </Stack>
-      <Box height={"10%"}></Box>
+        <Box><StudentBasicInfo student={student}/></Box>
+        <Box><ScheduleDisplay schedule={student?.schedule}/></Box>
     </>
   )
 }
