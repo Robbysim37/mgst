@@ -4,7 +4,7 @@ import { useAppSelector } from "../../state/store"
 import { Student } from "../../typeScriptDataTypes"
 import StudentBasicInfo from "../styledComponents/StudentBasicInfo"
 import ScheduleDisplay from "./scheduleDisplay/ScheduleDisplay"
-import { Stack } from "@mui/material"
+import { Stack,Tabs,Tab,Box,} from "@mui/material"
 
 export default function StudentView() {
 
@@ -22,12 +22,20 @@ export default function StudentView() {
   return (
     <>
     <Stack sx={{height:"100%",width:"100%"}}>
-      <div style={{height:"10%"}}></div>
-        <Stack direction={"row"} sx={{height:"80%",width:"100%"}}>
-          <StudentBasicInfo student={student}></StudentBasicInfo>
-          <ScheduleDisplay schdeule={student?.schedule}></ScheduleDisplay>
-        </Stack>
-      <div style={{height:"10%"}}></div>
+      <Box height={"10%"}
+      width={"100%"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
+      sx={{backgroundColor:"rgba(0,0,0,.5)"}}>
+        <Tabs>
+          <Tab sx={{color:"white"}} label="Details"/>
+          <Tab sx={{color:"white"}} label="Schedule"/>
+        </Tabs>
+      </Box>
+          {/* // <StudentBasicInfo student={student}></StudentBasicInfo>}
+          // <ScheduleDisplay schdeule={student?.schedule}></ScheduleDisplay>} */}
+      <Box height={"10%"}></Box>
     </Stack>    
     </>
   )
