@@ -7,7 +7,7 @@ interface Props {
     student?: Student;
     height?: string;
     width?: string;
-    className: "studentCard" | "courseCard";
+    className?: "studentCard" | "courseCard";
 }
 
 const InfoCard: React.FC<Props> = (props) => {
