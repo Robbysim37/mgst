@@ -7,40 +7,21 @@ import TrimesterDisplay from "./TrimesterDisplay"
 // 4 boxes represent individual years
 // 3 rows inside each box are trimesters
 
-const triFont = {
-    fontSize:"1.5rem",
-    fontFamily:"serif"
-}
-
-const scheduleBoxStyles = {
-    display:"flex",
-    width:"100%",
-    flexWrap:"wrap",
-    justifyContent:"space-evenly",
-    alignContent:"space-between"
-}
-
-
-const trimesterCardBackground = {
-    backgroundColor:"rgba(0,0,0,.25)",
-    justifyContent:"space-around"
-}
-
 interface Props {
     schdeule?: Schedule
 }
 
 const ScheduleDisplay:React.FC<Props> = (props) => {
   return (
-    <Box sx={scheduleBoxStyles}>
+    <Box display={"flex"} sx={{backgroundColor:"red"}} flexWrap={"wrap"}>
         {props.schdeule?.map( (currYear,index) => {
             return (
                     <InfoCardContainer
                     className="container"
                     borderRadius="30px"
-                    height={"48%"} 
-                    width={"48%"}
-                    backgroundColor="white">
+                    height="10%"
+                    width="50%"
+                    backgroundColor="blue">
                         <Typography 
                         width={"100%"}
                         fontFamily={"serif"} 
@@ -57,7 +38,7 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
                     </InfoCardContainer>
             )
         })}
-    </Box>
+        </Box>
   )
 
 }

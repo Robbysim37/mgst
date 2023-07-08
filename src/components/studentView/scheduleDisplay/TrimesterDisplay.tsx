@@ -13,6 +13,7 @@ interface Props {
 const TrimesterDisplay:React.FC<Props> = (props) => {
   return (
     <InfoCardContainer
+    className="container"
     justifyContent="center"
     backgroundColor="rgba(0,0,0,.5)">
         <Typography 

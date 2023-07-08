@@ -7,9 +7,10 @@ interface Props {
     className?: "container";
     height?: string;
     width?: string;
-    backgroundColor?:"rgba(0,0,0,.5)" | "white";
+    backgroundColor?:"rgba(0,0,0,.5)" | "white" | "blue";
     justifyContent?:"center"
     borderRadius?:"30px"
+    
   }
 
 const InfoCardContainer: React.FC<Props> = (props) => {
