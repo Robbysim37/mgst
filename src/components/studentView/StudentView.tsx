@@ -28,7 +28,7 @@ export default function StudentView() {
   return (
     <>
     <Stack sx={{height:"100%",width:"100%"}}>
-      <Box style={{height:"10%"}}>
+      <Box sx={{height:"10%"}}>
         <Button onClick={viewChangeHandler} id="details">Details</Button>
         <Button onClick={viewChangeHandler} id="schedule">Schedule</Button>
       </Box>

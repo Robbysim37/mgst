@@ -1,33 +1,28 @@
-import {Box,Typography} from "@mui/material"
+import {Typography,Stack,TextField,Box,Button} from "@mui/material"
 import { Student } from "../../typeScriptDataTypes"
+import { useState } from "react"
+import StudentBasicInfoReadOnly from "./studentDetails/StudentBasicInfoReadOnly"
+import StudentBasicInfoEdit from "./studentDetails/StudentBasicInfoEdit"
 
 interface Props {
     children?: React.ReactNode
     student?: Student
 }
 
-const basicInfoStyles = {
-    backgroundColor:"white",
-    height:"100%",
-    width:"20%",
-    borderRadius:"2rem",
-    marginLeft:"1rem",
-    marginRight:"1rem"
-}
-
-const studentInfoFont = {
-    fontFamily:"serif",
-    fontSize:"2rem"
-}
-
 const StudentBasicInfo:React.FC<Props> = (props) => {
+
+  const [editView,setEditView] = useState(false)
+
   return (
-    <Box sx={basicInfoStyles}>
-        <Typography sx={studentInfoFont}>{props.student?.firstName}</Typography>
-        <Typography sx={studentInfoFont}>{props.student?.lastName}</Typography>
-        <Typography sx={studentInfoFont}>Grade: {props.student?.grade}</Typography>
-        <Typography sx={studentInfoFont}>Cohort: {props.student?.cohort}</Typography>
-    </Box>
+    <Stack height="100%" display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+      {!editView && <StudentBasicInfoReadOnly student={props.student} setEditView={setEditView}/>}
+      {editView && <StudentBasicInfoEdit student={props.student}/>}
+      <Box height={"30%"} width={"80%"} marginBottom={"1rem"}>
+        <TextField label={"Notes"} rows={6} multiline sx={{height:"100%",width:"100%"}}>
+
+        </TextField>
+      </Box>
+    </Stack>
   )
 }
 
