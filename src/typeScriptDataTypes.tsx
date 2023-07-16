@@ -19,6 +19,13 @@ export type Course = {
     creditAmount: number
 }
 
+export type CourseIdentifier = {
+    username: string | undefined,
+    yearIndex: number,
+    trimesterIndex: number,
+    courseIndex: number
+}
+
 export type Trimester = Array<Course>
 
 export type Year = Array<Trimester>

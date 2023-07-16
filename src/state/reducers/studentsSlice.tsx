@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {Student,BasicStudentInfo} from "../../typeScriptDataTypes"
+import {Student,BasicStudentInfo,CourseIdentifier} from "../../typeScriptDataTypes"
 
 export interface studentInitialState {
     students: Array<Student> | null
@@ -27,9 +27,22 @@ export const studentSlice = createSlice({
                     return currStudent
                 })
             }
+        },
+        updateCourseCompletion: (state,action: PayloadAction<Student>) => {
+            if(state.students && action.payload.username){
+                state.students = state.students.map((currStudent) => {
+                    if(currStudent.username === action.payload.username){
+                        currStudent = action.payload
+                    }
+                    return currStudent
+                })
+            }
         }
     },
 })
 
 export default studentSlice.reducer
-export const { updateStudentList,updateStudent } = studentSlice.actions
+export const { 
+    updateStudentList,
+    updateStudent,
+    updateCourseCompletion } = studentSlice.actions
