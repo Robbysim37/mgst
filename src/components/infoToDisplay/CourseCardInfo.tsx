@@ -1,6 +1,10 @@
 import { Box,Stack,Typography } from "@mui/material"
+import axios from "axios";
 import { Course } from "../../typeScriptDataTypes"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { useAppDispatch } from "../../state/store";
+import { updateCourseCompletion } from "../../state/reducers/studentsSlice";
+import { useParams } from "react-router";
 
 interface Props {
     course: Course;
@@ -22,10 +26,20 @@ const cardInfoFont = {
 
 const CourseCardInfo:React.FC<Props> = (props) => {
 
+    const dispatch = useAppDispatch()
+    const {studentUsername} = useParams()
+
     const courseClickHandler = (e:React.MouseEvent<HTMLDivElement>) => {
-        console.log(props.yearIndex)
-        console.log(props.triIndex)
-        console.log(props.courseIndex)
+        const courseSelect = {
+            username:studentUsername,
+            yearIndex:props.yearIndex,
+            trimesterIndex:props.triIndex,
+            courseIndex:props.courseIndex
+        }
+        axios.put('http://localhost:8000/editCourseCompletion',courseSelect).then(response => {
+            console.log(response.data)
+            dispatch(updateCourseCompletion(response.data))
+        })
     }
 
   return (
