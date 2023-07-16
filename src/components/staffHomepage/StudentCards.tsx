@@ -28,10 +28,12 @@ const StudentCards:React.FC<Props> = (props) => {
     })
 
     useEffect(() => {
-        axios.get<Array<Student>>("http://localhost:8000")
-        .then(promise => {
-            dispatch(updateStudentList(promise.data))
-        })
+        if(!students){
+            axios.get<Array<Student>>("http://localhost:8000")
+            .then(promise => {
+                dispatch(updateStudentList(promise.data))
+            })
+        }
     },[dispatch])
 
     return(
@@ -51,7 +53,7 @@ const StudentCards:React.FC<Props> = (props) => {
             cards from getting covered by searchbar */}
             <div style={{height:"10%",width:"100%"}}></div>
 
-            {filterStudents(students,filters).map(currStudent => {return(
+            {students && filterStudents(students,filters).map(currStudent => {return(
                 <InfoCard 
                 key={Math.random()} 
                 student={currStudent}

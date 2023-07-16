@@ -15,10 +15,12 @@ export default function StudentView() {
   const [currentView,setCurrentView] = useState("details")
 
   useEffect(() => {
-    const pageStudent = students.filter(currStudent => {
-      return currStudent.username === studentUsername
-    })
-    setStudent(pageStudent[0])
+    if(students){
+      const pageStudent = students.filter(currStudent => {
+        return currStudent.username === studentUsername
+      })
+      setStudent(pageStudent[0])
+    }
   },[studentUsername,students])
 
   const viewChangeHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
@@ -35,9 +37,9 @@ export default function StudentView() {
         <Stack direction={"row"} display={"flex"} justifyContent={"center"} sx={{height:"80%",width:"100%"}}>
           { currentView === "details" && 
           <InfoCard height="90%" width="50%" student={student}>
-            <StudentBasicInfo student={student}/>
+            {student && <StudentBasicInfo student={student}/>}
           </InfoCard>}
-          { currentView === "schedule" && <ScheduleDisplay schdeule={student?.schedule}></ScheduleDisplay>}
+          { currentView === "schedule" && student && <ScheduleDisplay schdeule={student.schedule}></ScheduleDisplay>}
         </Stack>
     </Stack>
     </>
