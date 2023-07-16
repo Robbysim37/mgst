@@ -1,6 +1,6 @@
 import InfoCardContainer from "../../infoDisplayers/InfoCardContainer"
-import { Typography,Stack } from "@mui/material"
-import { Trimester } from "../../../typeScriptDataTypes";
+import { Typography } from "@mui/material"
+import { Trimester} from "../../../typeScriptDataTypes";
 import InfoCard from "../../infoDisplayers/InfoCard";
 import CourseCardInfo from "../../infoToDisplay/CourseCardInfo";
 
@@ -8,6 +8,8 @@ interface Props {
     children?:React.ReactNode;
     number: number;
     trimester:Trimester;
+    yearIndex: number;
+    triIndex: number;
 }
 
 const TrimesterDisplay:React.FC<Props> = (props) => {
@@ -22,12 +24,17 @@ const TrimesterDisplay:React.FC<Props> = (props) => {
         fontFamily={"serif"}>
         Trimester {props.number + 1}
         </Typography>
-        {props.trimester.map( currCourse => {
+        {props.trimester.map( (currCourse,courseIndex) => {
             return(
                     <InfoCard
+                    key={Math.random()}
                     width="25%"
                     className="courseCard">
-                      <CourseCardInfo course={currCourse}></CourseCardInfo>
+                      <CourseCardInfo
+                      yearIndex={props.yearIndex}
+                      triIndex={props.triIndex}
+                      courseIndex={courseIndex}
+                      course={currCourse}/>
                     </InfoCard>
             )
         })}

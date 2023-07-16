@@ -4,6 +4,13 @@ export type NewStudentInfo = {
     cohort:number
 }
 
+export type BasicStudentInfo = {
+    username:string,
+    firstName:string,
+    lastName:string,
+    cohort:number
+}
+
 export type Course = {
     name: string,
     creditType: string,

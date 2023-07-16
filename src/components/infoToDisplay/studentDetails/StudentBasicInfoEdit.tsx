@@ -1,19 +1,23 @@
 import { Student } from "../../../typeScriptDataTypes"
 import {Stack,TextField,Button} from "@mui/material"
+import { useAppDispatch } from "../../../state/store"
 import axios from "axios"
 import {useState} from "react"
+import { updateStudent } from "../../../state/reducers/studentsSlice"
 
 interface Props {
     setEditView:Function
-    student?:Student
+    student:Student
 }
 
 const StudentBasicInfoEdit:React.FC<Props> = (props) => {
 
+  const dispatch = useAppDispatch()
+
   const [studentForm,setStudentForm] = useState({
-    firstName: props.student?.firstName,
-    lastName: props.student?.lastName,
-    cohort: props.student?.cohort
+    firstName: props.student.firstName,
+    lastName: props.student.lastName,
+    cohort: props.student.cohort
   })
 
   const studentFormChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +25,6 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
       ...studentForm,
       [e.target.id]:e.target.value
     })
-    let test = studentForm
-    console.log(test)
   }
 
   const closeFormClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
@@ -30,13 +32,18 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
   }
 
   const submitFormClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
-    axios.put('http://localhost:8000/editStudentInfo',{
+    const updatedInfo = 
+    {
       username:props.student?.username,
       firstName:studentForm.firstName,
       lastName:studentForm.lastName,
       cohort:studentForm.cohort,
-    }).then(
+    }
+    axios.put('http://localhost:8000/editStudentInfo',updatedInfo)
+    .then( promise => {
+      dispatch(updateStudent(updatedInfo))
       props.setEditView(false)
+    }
     )
   }
 

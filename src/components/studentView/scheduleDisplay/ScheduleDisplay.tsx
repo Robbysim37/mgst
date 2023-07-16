@@ -27,15 +27,16 @@ const trimesterCardBackground = {
 }
 
 interface Props {
-    schdeule?: Schedule
+    schdeule: Schedule
 }
 
 const ScheduleDisplay:React.FC<Props> = (props) => {
   return (
     <Box sx={scheduleBoxStyles}>
-        {props.schdeule?.map( (currYear,index) => {
+        {props.schdeule?.map( (currYear,yearIndex) => {
             return (
                     <InfoCardContainer
+                    key={Math.random()}
                     className="container"
                     borderRadius="30px"
                     height={"48%"} 
@@ -44,13 +45,16 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
                         <Typography 
                         width={"100%"}
                         fontFamily={"serif"} 
-                        fontSize={"2rem"}>Year {index + 1}</Typography>
+                        fontSize={"2rem"}>Year {yearIndex + 1}</Typography>
                         <Stack direction={"column"} width={"100%"}>
-                            {currYear.map( (currTri,index) => {
+                            {currYear.map( (currTri,triIndex) => {
                                 return(
-                                    <TrimesterDisplay 
-                                    trimester ={currTri}
-                                    number={index}/>
+                                    <TrimesterDisplay
+                                    key={Math.random()}
+                                    yearIndex={yearIndex}
+                                    triIndex = {triIndex}
+                                    trimester={currTri}
+                                    number={triIndex}/>
                                 )
                             })}
                         </Stack>

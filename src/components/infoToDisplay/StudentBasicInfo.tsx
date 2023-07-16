@@ -1,4 +1,4 @@
-import {Typography,Stack,TextField,Box,Button} from "@mui/material"
+import {Stack,TextField,Box} from "@mui/material"
 import { Student } from "../../typeScriptDataTypes"
 import { useState } from "react"
 import StudentBasicInfoReadOnly from "./studentDetails/StudentBasicInfoReadOnly"
@@ -7,7 +7,7 @@ import StudentBasicInfoEdit from "./studentDetails/StudentBasicInfoEdit"
 interface Props {
     
     children?: React.ReactNode
-    student?: Student
+    student: Student
 }
 
 const StudentBasicInfo:React.FC<Props> = (props) => {
