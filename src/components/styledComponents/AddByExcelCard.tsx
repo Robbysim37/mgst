@@ -1,4 +1,5 @@
-import{Card,Typography} from "@mui/material"
+import{Card,Stack,Typography} from "@mui/material"
+import UploadFileButton from "./UploadFileButton"
 
 export default function AddByExcelCard() {
   return (
@@ -7,7 +8,12 @@ export default function AddByExcelCard() {
       height:"80%",
       width:"25%",
   }}>
-    <Typography>Import Spreadsheet</Typography>
+    <Stack alignItems={"center"}>
+      <Typography fontSize="2rem"
+      fontFamily="serif"
+      color="black">Import Spreadsheet</Typography>
+      <UploadFileButton/>
+    </Stack>
     
   </Card>
   )
