@@ -1,7 +1,11 @@
 import{Card,Stack,Typography} from "@mui/material"
-import UploadFileButton from "./UploadFileButton"
+import UploadFileData from "../infoToDisplay/UploadFileData"
 
-export default function AddByExcelCard() {
+interface Props {
+  setStudentModal:Function
+}
+
+ const AddByExcelCard:React.FC<Props> = (props) => {
   return (
     <Card sx={{
       backgroundColor:"white",
@@ -12,9 +16,11 @@ export default function AddByExcelCard() {
       <Typography fontSize="2rem"
       fontFamily="serif"
       color="black">Import Spreadsheet</Typography>
-      <UploadFileButton/>
+      <UploadFileData setStudentModal={props.setStudentModal}/>
     </Stack>
     
   </Card>
   )
 }
+
+export default AddByExcelCard
