@@ -40,7 +40,7 @@ const CreateStudentsModal:React.FC<Props> = (props) => {
         <Typography sx={{color:'white',fontSize:"2rem"}}>
           or
         </Typography>
-        <AddByExcelCard></AddByExcelCard>
+        <AddByExcelCard setStudentModal={props.setStudentModal}></AddByExcelCard>
     </Box>,
     document.getElementById("portal")!
   )
