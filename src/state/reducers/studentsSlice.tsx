@@ -37,6 +37,16 @@ export const studentSlice = createSlice({
                     return currStudent
                 })
             }
+        },
+        deleteStudent: (state,action:PayloadAction<Student>) => {
+            if(state.students && action.payload.username){
+                state.students = state.students.filter((currStudent) => {
+                    if(currStudent.username !== action.payload.username){
+                        return true
+                    }
+                    return false
+                })
+            }
         }
     },
 })
@@ -45,4 +55,5 @@ export default studentSlice.reducer
 export const { 
     updateStudentList,
     updateStudent,
-    updateCourseCompletion } = studentSlice.actions
+    updateCourseCompletion,
+    deleteStudent } = studentSlice.actions

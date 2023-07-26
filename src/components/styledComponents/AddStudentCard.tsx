@@ -16,7 +16,8 @@ const AddStudentCard:React.FC<Props> = (props) => {
     {
       firstName: "",
       lastName: "",
-      cohort: new Date().getFullYear()
+      cohort: new Date().getFullYear(),
+      completedCourses: ""
     }
   )
 
