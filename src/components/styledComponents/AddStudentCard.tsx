@@ -1,7 +1,8 @@
 import { Card, FormLabel, FormGroup, 
   FormControl, Input, InputLabel, Stack } from "@mui/material"
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import StudentSubmit from "./StudentSubmit"
+import CompletedCoursesList from "./CompletedCoursesList"
 
 const labelStyles = {fontSize:"2rem",fontFamily:"serif",color:"black"}
 const inputStyles = {marginBottom:"1rem",marginTop:"1rem"}
@@ -12,6 +13,7 @@ interface Props {
 
 const AddStudentCard:React.FC<Props> = (props) => {
 
+  const [completedCoursesList,setcompletedCoursesList] = useState<Array<string>>([])
   const [newStudentInfo,setNewStudentInfo] = useState(
     {
       firstName: "",
@@ -20,6 +22,15 @@ const AddStudentCard:React.FC<Props> = (props) => {
       completedCourses: ""
     }
   )
+
+  useEffect(() => {
+    setNewStudentInfo(
+      {...newStudentInfo,
+        completedCourses:completedCoursesList.join(":")
+      }
+    )
+    console.log(newStudentInfo)
+  },[completedCoursesList])
 
   const studentInfoChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9\b]+$/
@@ -62,6 +73,9 @@ const AddStudentCard:React.FC<Props> = (props) => {
               <InputLabel>Cohort</InputLabel>
               <Input type="number" value={newStudentInfo.cohort} id={"cohort"} onChange={studentInfoChangeHandler} sx={inputStyles}/>
             </FormControl>
+            <CompletedCoursesList
+            completedCourses={completedCoursesList} 
+            setCompletedCourses={setcompletedCoursesList}/>
 
             <StudentSubmit  newStudentInfoArray={[newStudentInfo]} setStudentModal={props.setStudentModal}/>
             </Stack>

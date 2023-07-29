@@ -11,7 +11,7 @@ const modalBG = {
     left:0,
     bottom:0,
     right:0,
-    zIndex:100000,
+    zIndex:1250,
     display:"flex",
     justifyContent:"space-evenly",
     alignItems:"center",
