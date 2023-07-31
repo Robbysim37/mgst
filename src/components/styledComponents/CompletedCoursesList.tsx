@@ -1,5 +1,8 @@
 import {Stack,Typography,TextField,Box,MenuItem} from "@mui/material"
 import {useState} from "react"
+import InfoCard from "../infoDisplayers/InfoCard"
+import InfoCardContainer from "../infoDisplayers/InfoCardContainer"
+import CompletedCourse from "../infoToDisplay/CompletedCourse"
 
 const coursesArr = [
     "ALG-1A",
@@ -66,8 +69,22 @@ const CompletedCoursesList:React.FC<Props> = (props) => {
     width={props.width || "100%"}
     alignItems={"center"}
     >
-        <Typography>Test</Typography>
-        <Box height={"40%"} width={"60%"}></Box>
+        <Typography>Completed Courses</Typography>
+        <InfoCardContainer className="container" component="div" height={"70%"} width={"60%"}>
+            {props.completedCourses.map((currCourse,i) => {
+                return (
+                <InfoCard width="100%">
+                    <CompletedCourse 
+                    code={currCourse}
+                    completedCourses={props.completedCourses} 
+                    setCompletedCourses={props.setCompletedCourses}
+                    >
+                        {currCourse}
+                    </CompletedCourse>
+                </InfoCard>
+                )
+            })}
+        </InfoCardContainer>
         <TextField select value={-1} onChange={courseChangeHandler}>
             <MenuItem value={-1}>Courses</MenuItem>
             {coursesList.map((currCourse,i) => {

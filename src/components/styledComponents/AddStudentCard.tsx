@@ -1,10 +1,10 @@
-import { Card, FormLabel, FormGroup, 
+import { Card, Typography, FormGroup, 
   FormControl, Input, InputLabel, Stack } from "@mui/material"
 import {useState,useEffect} from "react"
 import StudentSubmit from "./StudentSubmit"
 import CompletedCoursesList from "./CompletedCoursesList"
 
-const labelStyles = {fontSize:"2rem",fontFamily:"serif",color:"black"}
+
 const inputStyles = {marginBottom:"1rem",marginTop:"1rem"}
 
 interface Props {
@@ -58,9 +58,14 @@ const AddStudentCard:React.FC<Props> = (props) => {
         height:"80%",
         width:"25%",
     }}>
-        <FormGroup>
-          <FormLabel sx={labelStyles}>Add Student</FormLabel>
-          <Stack sx={{width:"75%",alignSelf:"center",display:"flex",alignItems:"center"}}>
+        <FormGroup sx={{height:"100%",display:"flex",alignItems:"center"}}>
+          <Stack
+          width={"75%"}
+          height={"100%"}
+          alignSelf={"center"}
+          display={"flex"}
+          alignItems={"center"}>
+            <Typography width={"100%"} fontSize="2rem" fontFamily="serif" color="black">Add Student</Typography>
             <FormControl>
               <InputLabel>First name</InputLabel>
               <Input id={"firstName"} onChange={studentInfoChangeHandler} sx={inputStyles} autoFocus/>
@@ -81,7 +86,6 @@ const AddStudentCard:React.FC<Props> = (props) => {
             </Stack>
 
         </FormGroup>
-
     </Card>
   )
 }
