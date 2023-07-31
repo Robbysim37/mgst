@@ -37,7 +37,7 @@ const CreateStudentsModal:React.FC<Props> = (props) => {
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
         <AddStudentCard setStudentModal={props.setStudentModal}></AddStudentCard>
-        <Typography sx={{color:'white',fontSize:"2rem"}}>
+        <Typography sx={{color:'white',fontSize:"3rem"}}>
           or
         </Typography>
         <AddByExcelCard setStudentModal={props.setStudentModal}></AddByExcelCard>

@@ -46,7 +46,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
   }
 
   return (
-    <Stack height="100%" display={"flex"} alignItems={"center"}>
+    <Stack height="50%" display={"flex"} alignItems={"center"}>
       <Menu anchorEl={anchorEl} onClose={menuClose} open={open} id={"student-menu"}>
         <MenuItem onClick={deleteStudentClickHandler} sx={{color:"red"}}>Delete Student</MenuItem>
       </Menu>
