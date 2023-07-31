@@ -82,7 +82,7 @@ const AddStudentCard:React.FC<Props> = (props) => {
             completedCourses={completedCoursesList} 
             setCompletedCourses={setcompletedCoursesList}/>
 
-            <StudentSubmit  newStudentInfoArray={[newStudentInfo]} setStudentModal={props.setStudentModal}/>
+            <StudentSubmit newStudentInfoArray={[newStudentInfo]} setStudentModal={props.setStudentModal}/>
             </Stack>
 
         </FormGroup>

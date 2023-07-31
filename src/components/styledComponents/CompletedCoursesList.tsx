@@ -1,4 +1,4 @@
-import {Stack,Typography,TextField,Box,MenuItem} from "@mui/material"
+import {Stack,Typography,TextField,MenuItem} from "@mui/material"
 import {useState} from "react"
 import InfoCard from "../infoDisplayers/InfoCard"
 import InfoCardContainer from "../infoDisplayers/InfoCardContainer"
@@ -65,7 +65,7 @@ const CompletedCoursesList:React.FC<Props> = (props) => {
 
   return (
     <Stack 
-    height={props.height || "100%"}
+    height={props.height || "50%"}
     width={props.width || "100%"}
     alignItems={"center"}
     >

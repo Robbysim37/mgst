@@ -42,6 +42,7 @@ const StudentCards:React.FC<Props> = (props) => {
         className="container"
         height="90%"
         width="95%"
+        justifyContent="flex-start"
         borderRadius="30px"
         backgroundColor = {"rgba(0,0,0,.5)"}
         >

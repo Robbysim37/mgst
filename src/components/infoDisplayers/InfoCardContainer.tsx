@@ -8,13 +8,15 @@ interface Props {
     height?: string;
     width?: string;
     backgroundColor?:"rgba(0,0,0,.5)" | "white";
-    justifyContent?:"center"
+    justifyContent?:"center" | "flex-start"
     borderRadius?:"30px"
   }
 
 const InfoCardContainer: React.FC<Props> = (props) => {
     return(
         <Box 
+        
+        
         component={props.component}
         className={props.className}
         height={props.height}

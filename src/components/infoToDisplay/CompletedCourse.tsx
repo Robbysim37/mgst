@@ -14,7 +14,7 @@ const CompletedCourse:React.FC<Props> = (props) => {
     const removeCourseClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
         const newCompletedCourses = props.completedCourses.filter(currCourse => {
             if(currCourse === props.code){
-                return false
+                return 
             }
             return true
         })
