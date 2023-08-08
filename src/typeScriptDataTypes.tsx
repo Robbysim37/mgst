@@ -41,3 +41,9 @@ export type Student = {
     username: string,
     schedule: Schedule
 }
+
+export type CourseIndexCode = {
+    username: string,
+    course1: string,
+    course2: string,
+}

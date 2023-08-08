@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {Student,BasicStudentInfo,CourseIdentifier} from "../../typeScriptDataTypes"
+import {Student,BasicStudentInfo,CourseIndexCode} from "../../typeScriptDataTypes"
 
 export interface studentInitialState {
     students: Array<Student> | null
@@ -47,7 +47,35 @@ export const studentSlice = createSlice({
                     return false
                 })
             }
-        }
+        },
+        swapCourses: (state,action:PayloadAction<CourseIndexCode>) => {
+            if(state.students && action.payload.username){
+
+            const code1 = action.payload.course1.split("")
+            const code2 = action.payload.course2.split("")
+
+            state.students = state.students.map((currStudent) => {
+                if(currStudent.username !== action.payload.username){
+
+                    const course1 = currStudent
+                    .schedule[parseInt(code1[0])][parseInt(code1[1])][parseInt(code1[2])]
+
+                    const course2 = currStudent
+                    .schedule[parseInt(code2[0])][parseInt(code2[1])][parseInt(code2[2])]
+
+                    console.log(course1)
+                    console.log(course2)
+
+                    currStudent.schedule[parseInt(code1[0])][parseInt(code1[1])][parseInt(code1[2])]
+                    =course2
+
+                    currStudent.schedule[parseInt(code2[0])][parseInt(code2[1])][parseInt(code2[2])]
+                    =course1
+                    return currStudent
+                }
+                return currStudent
+            })
+        }}
     },
 })
 
@@ -56,4 +84,5 @@ export const {
     updateStudentList,
     updateStudent,
     updateCourseCompletion,
+    swapCourses,
     deleteStudent } = studentSlice.actions

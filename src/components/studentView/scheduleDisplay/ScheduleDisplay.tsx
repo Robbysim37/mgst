@@ -1,5 +1,6 @@
 import { Schedule } from "../../../typeScriptDataTypes"
 import {Box, Stack, Typography} from "@mui/material"
+import {useState} from "react"
 import InfoCardContainer from "../../infoDisplayers/InfoCardContainer"
 import TrimesterDisplay from "./TrimesterDisplay"
 
@@ -31,6 +32,9 @@ interface Props {
 }
 
 const ScheduleDisplay:React.FC<Props> = (props) => {
+
+    const [selectedCourse,setSelectedCourse] = useState<string>("")
+
   return (
     <Box sx={scheduleBoxStyles}>
         {props.schdeule?.map( (currYear,yearIndex) => {
@@ -50,6 +54,8 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
                             {currYear.map( (currTri,triIndex) => {
                                 return(
                                     <TrimesterDisplay
+                                    selectedCourse={selectedCourse}
+                                    setSelectedCourse={setSelectedCourse}
                                     key={Math.random()}
                                     yearIndex={yearIndex}
                                     triIndex = {triIndex}

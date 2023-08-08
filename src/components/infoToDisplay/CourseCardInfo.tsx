@@ -1,10 +1,11 @@
 import { Box,Stack,Typography,IconButton } from "@mui/material"
+import {useState} from "react"
 import axios from "axios";
 import { Course } from "../../typeScriptDataTypes"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useAppDispatch } from "../../state/store";
-import { updateCourseCompletion } from "../../state/reducers/studentsSlice";
+import { updateCourseCompletion,swapCourses } from "../../state/reducers/studentsSlice";
 import { useParams } from "react-router";
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
     yearIndex: number;
     triIndex: number;
     courseIndex: number;
+    selectedCourse: string;
+    setSelectedCourse: Function;
 }
 
 const cardSubjectFont = {
@@ -29,9 +32,25 @@ const CourseCardInfo:React.FC<Props> = (props) => {
 
     const dispatch = useAppDispatch()
     const {studentUsername} = useParams()
+    const [indexCode] = useState(
+            props.yearIndex.toString() +
+            props.triIndex.toString() +
+            props.courseIndex.toString()
+    )
 
     const select = (e:React.MouseEvent<HTMLDivElement>) => {
-        console.log("pain")
+
+        if(props.selectedCourse && studentUsername){
+            dispatch(swapCourses({
+                username:studentUsername,
+                course1:props.selectedCourse,
+                course2:indexCode
+            }))
+            props.setSelectedCourse("")
+        }else{
+            console.log(indexCode)
+            props.setSelectedCourse(indexCode)
+        }
     }
 
     const courseClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
@@ -49,7 +68,8 @@ const CourseCardInfo:React.FC<Props> = (props) => {
     }
 
   return (
-    <Box onClick={select} height={"100%"} width={"100%"}>
+    <Box onClick={select} height={"100%"} width={"100%"} 
+    bgcolor={indexCode === props.selectedCourse ? "success.light" : "white"}>
         <Stack sx={{height:"100%",justifyContent:"space-between"}}>
             <Typography sx={cardSubjectFont}>
                 {props.course.name}
