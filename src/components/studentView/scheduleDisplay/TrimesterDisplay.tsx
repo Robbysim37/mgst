@@ -30,11 +30,11 @@ const TrimesterDisplay:React.FC<Props> = (props) => {
                     key={Math.random()}
                     width="25%"
                     className="courseCard">
-                      <CourseCardInfo
-                      yearIndex={props.yearIndex}
-                      triIndex={props.triIndex}
-                      courseIndex={courseIndex}
-                      course={currCourse}/>
+                        <CourseCardInfo
+                        yearIndex={props.yearIndex}
+                        triIndex={props.triIndex}
+                        courseIndex={courseIndex}
+                        course={currCourse}/>
                     </InfoCard>
             )
         })}
