@@ -1,8 +1,11 @@
 import { Schedule } from "../../../typeScriptDataTypes"
-import {Box, Stack, Typography} from "@mui/material"
+import {Box, Stack, Button, Typography} from "@mui/material"
 import {useState} from "react"
 import InfoCardContainer from "../../infoDisplayers/InfoCardContainer"
 import TrimesterDisplay from "./TrimesterDisplay"
+import { useParams } from "react-router-dom"
+import { useAppSelector } from "../../../state/store"
+import axios from "axios"
 
 // entire component represents schdedule
 // 4 boxes represent individual years
@@ -33,10 +36,30 @@ interface Props {
 
 const ScheduleDisplay:React.FC<Props> = (props) => {
 
+    const students = useAppSelector(state => state.students.students)
+    const {studentUsername} = useParams()
+    const [disabled,setDisabled] = useState(false)
     const [selectedCourse,setSelectedCourse] = useState<string>("")
 
+    const updateScheduleHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+        if(students){
+            setDisabled(true)
+            const sendingStudent = students.filter(currStudent => {
+                return currStudent.username === studentUsername ? true : false
+            })[0]
+            axios.put('http://localhost:8000/updateCourseOrder',sendingStudent)
+            .then(promise => {
+                setDisabled(false)
+            }).catch(error => {
+                setDisabled(false)
+                console.log(error)
+            })
+        }
+    }
+
   return (
-    <Box sx={scheduleBoxStyles}>
+    <>
+    <Box sx={scheduleBoxStyles} display={"flex"}>
         {props.schdeule?.map( (currYear,yearIndex) => {
             return (
                     <InfoCardContainer
@@ -67,7 +90,11 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
                     </InfoCardContainer>
             )
         })}
+        <Button onClick={updateScheduleHandler} 
+        disabled={disabled}
+        variant="contained">Update Schedule</Button>
     </Box>
+    </>
   )
 
 }

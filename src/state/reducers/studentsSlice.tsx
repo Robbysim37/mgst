@@ -55,16 +55,13 @@ export const studentSlice = createSlice({
             const code2 = action.payload.course2.split("")
 
             state.students = state.students.map((currStudent) => {
-                if(currStudent.username !== action.payload.username){
+                if(currStudent.username === action.payload.username){
 
                     const course1 = currStudent
                     .schedule[parseInt(code1[0])][parseInt(code1[1])][parseInt(code1[2])]
 
                     const course2 = currStudent
                     .schedule[parseInt(code2[0])][parseInt(code2[1])][parseInt(code2[2])]
-
-                    console.log(course1)
-                    console.log(course2)
 
                     currStudent.schedule[parseInt(code1[0])][parseInt(code1[1])][parseInt(code1[2])]
                     =course2
