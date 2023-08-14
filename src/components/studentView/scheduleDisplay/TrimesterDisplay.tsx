@@ -10,6 +10,8 @@ interface Props {
     trimester:Trimester;
     yearIndex: number;
     triIndex: number;
+    selectedCourse: string
+    setSelectedCourse : Function
 }
 
 const TrimesterDisplay:React.FC<Props> = (props) => {
@@ -31,6 +33,8 @@ const TrimesterDisplay:React.FC<Props> = (props) => {
                     width="25%"
                     className="courseCard">
                         <CourseCardInfo
+                        selectedCourse={props.selectedCourse}
+                        setSelectedCourse={props.setSelectedCourse}
                         yearIndex={props.yearIndex}
                         triIndex={props.triIndex}
                         courseIndex={courseIndex}
