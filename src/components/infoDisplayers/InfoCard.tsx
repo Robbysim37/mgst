@@ -28,8 +28,8 @@ const InfoCard: React.FC<Props> = (props) => {
     return(
         <Card
         sx={{
-        height:props.height,
-        width:props.width,
+        height:props.height || "50%",
+        width:props.width || "50%",
         margin:"2.5%",
         borderRadius:"30px"}}
         onClick={cardClickHandler}>
