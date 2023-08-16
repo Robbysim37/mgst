@@ -4,6 +4,7 @@ import StaffHomepage from './components/staffHomepage/StaffHomepage';
 
 import {Routes,Route} from "react-router-dom"
 import StudentView from './components/studentView/StudentView';
+import LandingPage from './components/landingPage/LandingPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar></NavBar>
       <PageBackground>
         <Routes>
+          <Route path="/" element={<LandingPage/>}/>
           <Route path="/staff" element={<StaffHomepage/>}/>
           <Route path="/staff/:studentUsername" element={<StudentView/>}/>
         </Routes>
