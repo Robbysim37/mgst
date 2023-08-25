@@ -7,6 +7,7 @@ interface Props {
     student?: Student;
     height?: string;
     width?: string;
+    display?: string;
     className?: "studentCard" | "courseCard";
 }
 
@@ -28,6 +29,7 @@ const InfoCard: React.FC<Props> = (props) => {
     return(
         <Card
         sx={{
+        display:props.display,
         height:props.height || "50%",
         width:props.width || "50%",
         margin:"2.5%",

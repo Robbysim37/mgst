@@ -14,7 +14,7 @@ const CompletedCourse:React.FC<Props> = (props) => {
     const removeCourseClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
         const newCompletedCourses = props.completedCourses.filter(currCourse => {
             if(currCourse === props.code){
-                return 
+                return false
             }
             return true
         })
@@ -22,8 +22,8 @@ const CompletedCourse:React.FC<Props> = (props) => {
     }
 
   return (
-    <Stack direction={"row"}>
-        <Box width={"20%"}></Box>
+    <Stack width={"100%"} direction={"row"} justifyContent={"center"} alignItems={"center"}>
+        <Box width={"10%"}></Box>
         <Typography alignSelf={"center"} width={"60%"}>{props.children}</Typography>
         <Box width={"20%"}>
         <IconButton onClick={removeCourseClickHandler}>
