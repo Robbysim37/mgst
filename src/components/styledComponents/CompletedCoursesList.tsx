@@ -58,6 +58,9 @@ const CompletedCoursesList:React.FC<Props> = (props) => {
     const courseChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
         const selectedIndex = parseInt(e.target.value)
         const item = coursesList.slice(selectedIndex,selectedIndex + 1)[0]
+        if(props.completedCourses.includes(item)){
+            return
+        }
         const newCompletedCourses = [...props.completedCourses]
         newCompletedCourses.push(item)
         props.setCompletedCourses(newCompletedCourses)
@@ -73,7 +76,7 @@ const CompletedCoursesList:React.FC<Props> = (props) => {
         <InfoCardContainer className="container" component="div" height={"70%"} width={"60%"}>
             {props.completedCourses.map((currCourse,i) => {
                 return (
-                <InfoCard width="100%">
+                <InfoCard display={"flex"} width="100%" height="30%">
                     <CompletedCourse 
                     code={currCourse}
                     completedCourses={props.completedCourses} 
