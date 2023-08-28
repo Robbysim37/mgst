@@ -12,9 +12,10 @@ const LogInCardInfo = () => {
   }
 
   const logInClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
-    axios.post("http://localhost:3000/staffLogin",logIn)
-    .then(promise => {
-    //  {window.sessionStorage.setItem("user",promise)}
+    axios.post("http://localhost:8000/staffLogin",logIn)
+    .then(promise=> {
+      console.log(promise.data.token)
+      window.sessionStorage.setItem("token",promise.data.token)
     })
     .catch(error => {
       console.log(error)
@@ -37,7 +38,7 @@ const LogInCardInfo = () => {
         label={"Password"}/>
 
       </Box>
-      <Button variant={"contained"}>Login</Button>
+      <Button onClick={logInClickHandler} variant={"contained"}>Login</Button>
     </Box>
   )
 }
