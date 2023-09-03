@@ -1,4 +1,5 @@
 import {Typography,TextField,Box,Button} from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import React, {useState} from "react"
 
@@ -6,6 +7,7 @@ import React, {useState} from "react"
 const LogInCardInfo = () => {
 
   const [logIn,setLogIn] = useState({username:"",password:""})
+  const navigate = useNavigate()
 
   const logInChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     setLogIn({...logIn,[`${e.target.id}`]:e.target.value})
@@ -15,6 +17,7 @@ const LogInCardInfo = () => {
     axios.post("http://localhost:8000/staffLogin",logIn)
     .then(promise=> {
       console.log(promise.data.token)
+      navigate("/staff")
       window.sessionStorage.setItem("token",promise.data.token)
     })
     .catch(error => {
