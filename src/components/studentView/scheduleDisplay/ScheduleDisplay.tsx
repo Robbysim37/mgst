@@ -42,12 +42,14 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
     const [selectedCourse,setSelectedCourse] = useState<string>("")
 
     const updateScheduleHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+        const token = window.sessionStorage.getItem("token")
+        const username = window.sessionStorage.getItem("user")
         if(students){
             setDisabled(true)
             const sendingStudent = students.filter(currStudent => {
                 return currStudent.username === studentUsername ? true : false
             })[0]
-            axios.put('http://localhost:8000/updateCourseOrder',sendingStudent)
+            axios.put('http://localhost:8000/updateCourseOrder',{data:sendingStudent,token,username})
             .then(promise => {
                 setDisabled(false)
             }).catch(error => {

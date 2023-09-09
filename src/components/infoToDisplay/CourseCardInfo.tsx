@@ -54,6 +54,9 @@ const CourseCardInfo:React.FC<Props> = (props) => {
     }
 
     const courseClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+
+        const token = window.sessionStorage.getItem("token")
+        const username = window.sessionStorage.getItem("user")
         e.stopPropagation()
         const courseSelect = {
             username:studentUsername,
@@ -61,7 +64,7 @@ const CourseCardInfo:React.FC<Props> = (props) => {
             trimesterIndex:props.triIndex,
             courseIndex:props.courseIndex
         }
-        axios.put('http://localhost:8000/editCourseCompletion',courseSelect).then(response => {
+        axios.put('http://localhost:8000/editCourseCompletion',{data:courseSelect,token,username}).then(response => {
             console.log(response.data)
             dispatch(updateCourseCompletion(response.data))
         })

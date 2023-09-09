@@ -32,6 +32,9 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
   }
 
   const submitFormClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+
+    const token = window.sessionStorage.getItem("token")
+    const username = window.sessionStorage.getItem("user")
     const updatedInfo = 
     {
       username:props.student?.username,
@@ -39,7 +42,7 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
       lastName:studentForm.lastName,
       cohort:studentForm.cohort,
     }
-    axios.put('http://localhost:8000/editStudentInfo',updatedInfo)
+    axios.put('http://localhost:8000/editStudentInfo',{data:updatedInfo,token,username})
     .then( promise => {
       dispatch(updateStudent(updatedInfo))
       props.setEditView(false)

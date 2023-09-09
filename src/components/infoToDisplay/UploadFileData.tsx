@@ -45,10 +45,12 @@ const UploadFileData:React.FC<Props> = (props) => {
   }
 
   const submitExcelDataHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
-    axios.post('http://localhost:8000/newStudents',excelData)
+    const token = window.sessionStorage.getItem("token")
+    const username = window.sessionStorage.getItem("user")
+    axios.post('http://localhost:8000/newStudents',{data:excelData,username,token})
     .then(response => {
       props.setStudentModal(false)
-      axios.get<Array<Student>>("http://localhost:8000")
+      axios.post<Array<Student>>("http://localhost:8000",{token,username})
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })

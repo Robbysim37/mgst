@@ -21,10 +21,12 @@ interface Props {
   }
 
   const sendNewStudentInfo = (e:React.MouseEvent<HTMLButtonElement>) => {
+    const username = window.sessionStorage.getItem("user")
+    const token = window.sessionStorage.getItem("token")
     setDisabledBool(true)
-    axios.post('http://localhost:8000/newStudents',props.newStudentInfoArray)
+    axios.post('http://localhost:8000/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
-      axios.get<Array<Student>>("http://localhost:8000")
+      axios.post<Array<Student>>("http://localhost:8000",{username,token})
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })
