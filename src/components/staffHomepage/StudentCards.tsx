@@ -28,10 +28,14 @@ const StudentCards:React.FC<Props> = (props) => {
     })
 
     useEffect(() => {
+        const username = window.sessionStorage.getItem("user")
+        const token = window.sessionStorage.getItem("token")
         if(!students){
-            axios.get<Array<Student>>("http://localhost:8000")
+            axios.post<Array<Student>>("http://localhost:8000",{username,token})
             .then(promise => {
                 dispatch(updateStudentList(promise.data))
+            }).catch(error => {
+                console.log(error)
             })
         }
     },[dispatch])
