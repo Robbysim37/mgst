@@ -31,7 +31,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
   const deleteStudentClickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
-    axios.delete('http://localhost:8000/deleteStudent',{data:{data:props.student.username,token,username}}).then(res => {
+    axios.delete('http://localhost:8000/deleteStudent',{data:{data:{data:props.student.username,token,username}}}).then(res => {
       dispatch(deleteStudent(props.student))
       navigate("/staff")
     }).catch(response => {

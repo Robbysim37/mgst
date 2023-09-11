@@ -11,6 +11,7 @@ import {Student} from "../../typeScriptDataTypes"
 import StudentCardInfo from "../infoToDisplay/StudentCardInfo"
 
 import { useState } from "react"
+import { formControlLabelClasses } from "@mui/material"
 
 interface Props {
     children?:React.ReactNode
@@ -29,7 +30,6 @@ const StudentCards:React.FC<Props> = (props) => {
     })
 
     useEffect(() => {
-        dispatch(toggleIsLoading(true))
         const username = window.sessionStorage.getItem("user")
         const token = window.sessionStorage.getItem("token")
         if(!students){
