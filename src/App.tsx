@@ -1,7 +1,6 @@
 import NavBar from './components/navBar/NavBar';
 import PageBackground from "./components/styledComponents/PageBackground"
 import StaffHomepage from './components/staffHomepage/StaffHomepage';
-import { useState } from 'react';
 import {Routes,Route} from "react-router-dom"
 import StudentView from './components/studentView/StudentView';
 import LandingPage from './components/landingPage/LandingPage';

@@ -30,7 +30,6 @@ interface Props {
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })
-      console.log(response)
       props.setStudentModal(false)
     })
     .catch(response => {

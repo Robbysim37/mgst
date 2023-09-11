@@ -48,7 +48,6 @@ const CourseCardInfo:React.FC<Props> = (props) => {
             }))
             props.setSelectedCourse("")
         }else{
-            console.log(indexCode)
             props.setSelectedCourse(indexCode)
         }
     }
@@ -65,7 +64,6 @@ const CourseCardInfo:React.FC<Props> = (props) => {
             courseIndex:props.courseIndex
         }
         axios.put('http://localhost:8000/editCourseCompletion',{data:courseSelect,token,username}).then(response => {
-            console.log(response.data)
             dispatch(updateCourseCompletion(response.data))
         })
     }

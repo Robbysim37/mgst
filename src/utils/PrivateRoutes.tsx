@@ -17,7 +17,6 @@ const PrivateRoutes = () => {
         }else{
             axios.post("http://localhost:8000/checkToken",{username:sessionUser,token:sessionToken})
             .then(promise => {
-                console.log(promise.data)
                 if(promise.data === true){
                     setIsAuth(true)
                 }else if(promise.data === false){

@@ -29,7 +29,6 @@ const AddStudentCard:React.FC<Props> = (props) => {
         completedCourses:completedCoursesList.join(":")
       }
     )
-    console.log(newStudentInfo)
   },[completedCoursesList])
 
   const studentInfoChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {

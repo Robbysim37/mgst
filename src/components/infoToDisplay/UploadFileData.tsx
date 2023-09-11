@@ -36,7 +36,6 @@ const UploadFileData:React.FC<Props> = (props) => {
               completedCourses:currLineArr[3]
             })
           })
-          console.log(data)
           setExcelData(data)
         }
       })
@@ -54,7 +53,6 @@ const UploadFileData:React.FC<Props> = (props) => {
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })
-      console.log(response)
     })
     .catch(response => {
       console.log(response)

@@ -6,6 +6,7 @@ import { filterStudents } from "../../logic/filterLogic"
 import axios from "axios"
 import { useAppDispatch, useAppSelector } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 import {Student} from "../../typeScriptDataTypes"
 import StudentCardInfo from "../infoToDisplay/StudentCardInfo"
 
@@ -28,17 +29,20 @@ const StudentCards:React.FC<Props> = (props) => {
     })
 
     useEffect(() => {
+        dispatch(toggleIsLoading(true))
         const username = window.sessionStorage.getItem("user")
         const token = window.sessionStorage.getItem("token")
         if(!students){
             axios.post<Array<Student>>("http://localhost:8000",{username,token})
             .then(promise => {
                 dispatch(updateStudentList(promise.data))
+                dispatch(toggleIsLoading(false))
             }).catch(error => {
                 console.log(error)
+                dispatch(toggleIsLoading(false))
             })
         }
-    },[dispatch])
+    },[])
 
     return(
         <InfoCardContainer 

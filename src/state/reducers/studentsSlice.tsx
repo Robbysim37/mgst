@@ -76,7 +76,6 @@ export const studentSlice = createSlice({
     },
 })
 
-export default studentSlice.reducer
 export const { 
     updateStudentList,
     updateStudent,
