@@ -4,6 +4,8 @@ import { useAppDispatch } from "../../../state/store"
 import axios from "axios"
 import {useState} from "react"
 import { updateStudent } from "../../../state/reducers/studentsSlice"
+import { toggleIsLoading } from "../../../state/reducers/isLoadingSlice"
+import { useNavigate } from "react-router-dom"
 
 interface Props {
     setEditView:Function
@@ -35,6 +37,7 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
 
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
+    dispatch(toggleIsLoading(true))
     const updatedInfo = 
     {
       username:props.student?.username,
@@ -43,15 +46,19 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
       cohort:studentForm.cohort,
     }
     axios.put('http://localhost:8000/editStudentInfo',{data:updatedInfo,token,username})
-    .then( promise => {
+    .then(promise => {
       dispatch(updateStudent(updatedInfo))
       props.setEditView(false)
-    }
-    )
+      dispatch(toggleIsLoading(false))
+    })
+    .catch(error => {
+      console.log(error)
+      dispatch(toggleIsLoading(false))
+    })
   }
 
   return (
-    <Stack>
+    <Stack spacing={3}>
     <TextField variant="filled" onChange={studentFormChangeHandler} 
     id="firstName" value={studentForm.firstName}>
       {props.student?.firstName} {props.student?.lastName}

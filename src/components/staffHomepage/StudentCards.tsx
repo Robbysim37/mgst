@@ -11,7 +11,6 @@ import {Student} from "../../typeScriptDataTypes"
 import StudentCardInfo from "../infoToDisplay/StudentCardInfo"
 
 import { useState } from "react"
-import { formControlLabelClasses } from "@mui/material"
 
 interface Props {
     children?:React.ReactNode
@@ -36,13 +35,19 @@ const StudentCards:React.FC<Props> = (props) => {
             axios.post<Array<Student>>("http://localhost:8000",{username,token})
             .then(promise => {
                 dispatch(updateStudentList(promise.data))
-                dispatch(toggleIsLoading(false))
             }).catch(error => {
                 console.log(error)
-                dispatch(toggleIsLoading(false))
             })
         }
     },[])
+
+    useEffect(()=>{
+        if(!students){
+            dispatch(toggleIsLoading(true))   
+        }else{
+            dispatch(toggleIsLoading(false))  
+        }
+    },[students])
 
     return(
         <InfoCardContainer 

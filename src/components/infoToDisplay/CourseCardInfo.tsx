@@ -1,6 +1,5 @@
 import { Box,Stack,Typography,IconButton } from "@mui/material"
 import {useState} from "react"
-import axios from "axios";
 import { Course } from "../../typeScriptDataTypes"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -53,9 +52,6 @@ const CourseCardInfo:React.FC<Props> = (props) => {
     }
 
     const courseClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
-
-        const token = window.sessionStorage.getItem("token")
-        const username = window.sessionStorage.getItem("user")
         e.stopPropagation()
         const courseSelect = {
             username:studentUsername,
@@ -63,9 +59,7 @@ const CourseCardInfo:React.FC<Props> = (props) => {
             trimesterIndex:props.triIndex,
             courseIndex:props.courseIndex
         }
-        axios.put('http://localhost:8000/editCourseCompletion',{data:courseSelect,token,username}).then(response => {
-            dispatch(updateCourseCompletion(response.data))
-        })
+        dispatch(updateCourseCompletion(courseSelect))
     }
 
   return (

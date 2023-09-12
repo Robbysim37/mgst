@@ -6,6 +6,8 @@ import TrimesterDisplay from "./TrimesterDisplay"
 import { useParams } from "react-router-dom"
 import { useAppSelector } from "../../../state/store"
 import axios from "axios"
+import { useAppDispatch } from "../../../state/store"
+import { toggleIsLoading } from "../../../state/reducers/isLoadingSlice"
 
 // entire component represents schdedule
 // 4 boxes represent individual years
@@ -36,6 +38,8 @@ interface Props {
 
 const ScheduleDisplay:React.FC<Props> = (props) => {
 
+    const dispatch = useAppDispatch()
+
     const students = useAppSelector(state => state.students.students)
     const {studentUsername} = useParams()
     const [disabled,setDisabled] = useState(false)
@@ -44,6 +48,7 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
     const updateScheduleHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
         const token = window.sessionStorage.getItem("token")
         const username = window.sessionStorage.getItem("user")
+        dispatch(toggleIsLoading(true))
         if(students){
             setDisabled(true)
             const sendingStudent = students.filter(currStudent => {
@@ -52,8 +57,11 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
             axios.put('http://localhost:8000/updateCourseOrder',{data:sendingStudent,token,username})
             .then(promise => {
                 setDisabled(false)
+                dispatch(toggleIsLoading(false))
+                alert("Schedule updated Successfully!")
             }).catch(error => {
                 setDisabled(false)
+                dispatch(toggleIsLoading(false))
                 console.log(error)
             })
         }

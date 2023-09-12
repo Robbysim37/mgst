@@ -9,6 +9,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../../state/store"
 import { deleteStudent } from "../../state/reducers/studentsSlice"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 
 interface Props {
     
@@ -31,6 +32,8 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
   const deleteStudentClickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
+    dispatch(toggleIsLoading(true))
+    setAnchorEl(null)
     axios.delete('http://localhost:8000/deleteStudent',{data:{data:{data:props.student.username,token,username}}}).then(res => {
       dispatch(deleteStudent(props.student))
       navigate("/staff")
@@ -63,9 +66,6 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
       {!editView && <StudentBasicInfoReadOnly student={props.student} setEditView={setEditView}/>}
       {editView && <StudentBasicInfoEdit setEditView={setEditView} student={props.student}/>}
       <Box height={"30%"} width={"80%"} marginBottom={"1rem"}>
-        <TextField label={"Notes"} rows={6} multiline sx={{height:"100%",width:"100%"}}>
-
-        </TextField>
       </Box>
     </Stack>
   )

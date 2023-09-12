@@ -27,6 +27,7 @@ interface Props {
     const username = window.sessionStorage.getItem("user")
     const token = window.sessionStorage.getItem("token")
     setDisabledBool(true)
+    closeModal(e)
     axios.post('http://localhost:8000/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
       axios.post<Array<Student>>("http://localhost:8000",{username,token})
@@ -34,11 +35,9 @@ interface Props {
           dispatch(updateStudentList(promise.data))
       })
       props.setStudentModal(false)
-      dispatch(toggleIsLoading(false))
     })
     .catch(response => {
       console.log(response)
-      dispatch(toggleIsLoading(false))
     });
 
   }
