@@ -6,6 +6,7 @@ import { updateStudentList } from "../../state/reducers/studentsSlice"
 
 
 import axios from "axios"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 
 interface Props {
   setStudentModal:Function
@@ -36,7 +37,6 @@ const UploadFileData:React.FC<Props> = (props) => {
               completedCourses:currLineArr[3]
             })
           })
-          console.log(data)
           setExcelData(data)
         }
       })
@@ -47,6 +47,8 @@ const UploadFileData:React.FC<Props> = (props) => {
   const submitExcelDataHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
+    dispatch(toggleIsLoading(true))
+    closeModal(e)
     axios.post('http://localhost:8000/newStudents',{data:excelData,username,token})
     .then(response => {
       props.setStudentModal(false)
@@ -54,7 +56,6 @@ const UploadFileData:React.FC<Props> = (props) => {
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })
-      console.log(response)
     })
     .catch(response => {
       console.log(response)

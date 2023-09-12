@@ -6,6 +6,7 @@ import { filterStudents } from "../../logic/filterLogic"
 import axios from "axios"
 import { useAppDispatch, useAppSelector } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 import {Student} from "../../typeScriptDataTypes"
 import StudentCardInfo from "../infoToDisplay/StudentCardInfo"
 
@@ -38,7 +39,15 @@ const StudentCards:React.FC<Props> = (props) => {
                 console.log(error)
             })
         }
-    },[dispatch])
+    },[])
+
+    useEffect(()=>{
+        if(!students){
+            dispatch(toggleIsLoading(true))   
+        }else{
+            dispatch(toggleIsLoading(false))  
+        }
+    },[students])
 
     return(
         <InfoCardContainer 

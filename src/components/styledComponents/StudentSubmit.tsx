@@ -1,10 +1,11 @@
 import { Stack, Button } from "@mui/material"
 import { NewStudentInfo } from "../../typeScriptDataTypes"
-import { useAppDispatch } from "../../state/store"
+import { useAppDispatch, useAppSelector } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
 import {useState} from "react"
 import {Student} from "../../typeScriptDataTypes"
 import axios from "axios"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 
 interface Props {
     setStudentModal:Function
@@ -15,22 +16,24 @@ interface Props {
 
   const [disabledBool,setDisabledBool] = useState(false)
   const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.isLoading)
 
   const closeModal = (e:React.MouseEvent<HTMLButtonElement>) => {
     props.setStudentModal(false)
   }
 
   const sendNewStudentInfo = (e:React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(toggleIsLoading(true))
     const username = window.sessionStorage.getItem("user")
     const token = window.sessionStorage.getItem("token")
     setDisabledBool(true)
+    closeModal(e)
     axios.post('http://localhost:8000/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
       axios.post<Array<Student>>("http://localhost:8000",{username,token})
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })
-      console.log(response)
       props.setStudentModal(false)
     })
     .catch(response => {

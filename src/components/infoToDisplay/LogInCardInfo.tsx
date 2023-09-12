@@ -2,18 +2,23 @@ import {Typography,TextField,Box,Button} from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import React, {useState} from "react"
-
+import { useAppDispatch,useAppSelector } from "../../state/store"
+import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
+import LoadingWheel from "../styledComponents/LoadingWheel"
 
 const LogInCardInfo = () => {
 
   const [logIn,setLogIn] = useState({username:"",password:""})
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.isLoading)
 
   const logInChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     setLogIn({...logIn,[`${e.target.id}`]:e.target.value})
   }
 
   const logInClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(toggleIsLoading(true))
     axios.post("http://localhost:8000/staffLogin",logIn)
     .then(promise => {
       window.sessionStorage.setItem("token",promise.data.token)
@@ -22,6 +27,7 @@ const LogInCardInfo = () => {
     })
     .catch(error => {
       console.log(error)
+      dispatch(toggleIsLoading(false))
     })
   }
 
@@ -43,7 +49,7 @@ const LogInCardInfo = () => {
       </Box>
       <Button onClick={logInClickHandler} variant={"contained"}>Login</Button>
     </Box>
-  )
+    )
 }
 
 export default LogInCardInfo

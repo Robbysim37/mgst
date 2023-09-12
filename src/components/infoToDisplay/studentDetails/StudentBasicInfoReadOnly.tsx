@@ -14,7 +14,7 @@ const StudentBasicInfoReadOnly:React.FC<Props> = (props) => {
       }
 
   return (
-    <Stack>
+    <Stack spacing={3}>
           <Typography fontFamily={"serif"} fontSize={"2rem"}>
             {props.student?.firstName} {props.student?.lastName}
           </Typography>
