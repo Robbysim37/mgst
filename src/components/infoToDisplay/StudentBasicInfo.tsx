@@ -1,4 +1,4 @@
-import {Stack,TextField,Box,IconButton,Menu,MenuItem} from "@mui/material"
+import {Stack,Box,IconButton,Menu,MenuItem} from "@mui/material"
 import { Student } from "../../typeScriptDataTypes"
 import { useState } from "react"
 import StudentBasicInfoReadOnly from "./studentDetails/StudentBasicInfoReadOnly"
@@ -30,10 +30,10 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
   }
 
   const deleteStudentClickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
+    setAnchorEl(null)
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
     dispatch(toggleIsLoading(true))
-    setAnchorEl(null)
     axios.delete('http://localhost:8000/deleteStudent',{data:{data:{data:props.student.username,token,username}}}).then(res => {
       dispatch(deleteStudent(props.student))
       navigate("/staff")

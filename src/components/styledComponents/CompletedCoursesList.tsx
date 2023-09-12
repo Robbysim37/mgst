@@ -27,7 +27,7 @@ const coursesArr = [
     "JUE-A",
     "ART-A",
     "ALG-2B",
-    "JUE-A",
+    "JUE-B",
     "CHEM/PHYS-B",
     "AMH-A",
     "SCI-A",
