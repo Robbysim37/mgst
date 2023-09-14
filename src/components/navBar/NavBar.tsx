@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import {useState} from "react"
 import React from "react"
 import AddStaffModal from "./AddStaffModal"
+import RemoveStaffModal from "./RemoveStaffModal"
 
 const NavBar = () => {
 
@@ -37,6 +38,7 @@ const NavBar = () => {
     return(
         <>
         {addStaffModal && <AddStaffModal setAddStaffModal={setAddStaffModal} />}
+        {removeStaffModal && <RemoveStaffModal setRemoveStaffModal={setRemoveStaffModal}/>}
         <AppBar position="relative" color="primary" sx={{height:"10vh"}}>
             <Toolbar sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
 
