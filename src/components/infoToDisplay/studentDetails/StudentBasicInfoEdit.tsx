@@ -59,15 +59,15 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
 
   return (
     <Stack spacing={3}>
-    <TextField variant="filled" onChange={studentFormChangeHandler} 
+    <TextField variant="filled" label="Firstname" onChange={studentFormChangeHandler} 
     id="firstName" value={studentForm.firstName}>
       {props.student?.firstName} {props.student?.lastName}
     </TextField>
-    <TextField variant="filled" onChange={studentFormChangeHandler} 
+    <TextField variant="filled" label="Lastname" onChange={studentFormChangeHandler} 
     id="lastName" value={studentForm.lastName}>
       {props.student?.firstName} {props.student?.lastName}
     </TextField>
-    <TextField variant="filled" onChange={studentFormChangeHandler} 
+    <TextField variant="filled" label="cohort" onChange={studentFormChangeHandler} 
     id="cohort" value={studentForm.cohort}>
       Cohort: {props.student?.cohort}
     </TextField>

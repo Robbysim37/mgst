@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
     children?: React.ReactNode;
+    color?: string;
     student?: Student;
     height?: string;
     width?: string;
@@ -29,6 +30,7 @@ const InfoCard: React.FC<Props> = (props) => {
     return(
         <Card
         sx={{
+        backgroundColor:props.color ||"white",
         display:props.display,
         height:props.height || "50%",
         width:props.width || "50%",
