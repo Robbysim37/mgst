@@ -28,6 +28,11 @@ const NavBar = () => {
         setAddStaffModal(true)
     }
 
+    const removeStaff = (e:React.MouseEvent<HTMLLIElement>) => {
+        menuClose()
+        setRemoveStaffModal(true)
+    }
+
     const logout = (e:React.MouseEvent<HTMLLIElement>) => {
         menuClose()
         window.sessionStorage.removeItem("token")
@@ -51,7 +56,7 @@ const NavBar = () => {
                  height={"100%"} width={"25%"}>
                     <Menu anchorEl={anchorEl} onClose={menuClose} open={open} id={"student-menu"}>
                         <MenuItem onClick={addStaff}>Add Staff</MenuItem>
-                        <MenuItem sx={{color:"red"}}>Delete Staff</MenuItem>
+                        <MenuItem onClick={removeStaff} sx={{color:"red"}}>Delete Staff</MenuItem>
                         <MenuItem onClick={logout} sx={{color:"red"}}>Logout</MenuItem>
                     </Menu>
                    {username && <Button color={"secondary"} onClick={usernmeClickHandler}>

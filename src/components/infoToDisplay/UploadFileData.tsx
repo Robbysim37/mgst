@@ -3,8 +3,8 @@ import { NewStudentInfo,Student } from "../../typeScriptDataTypes"
 import {Button,Stack,Box} from "@mui/material"
 import { useAppDispatch } from "../../state/store"
 import { updateStudentList } from "../../state/reducers/studentsSlice"
-
-
+import { downloadStudents } from "../../utils/downloadStudents"
+import { stringBuilder } from "../../utils/buildCSVstring"
 import axios from "axios"
 import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
 
@@ -51,7 +51,7 @@ const UploadFileData:React.FC<Props> = (props) => {
     closeModal(e)
     axios.post('http://localhost:8000/newStudents',{data:excelData,username,token})
     .then(response => {
-      props.setStudentModal(false)
+      downloadStudents("student-temp-passwords.csv",stringBuilder(response.data))
       axios.post<Array<Student>>("http://localhost:8000",{token,username})
       .then(promise => {
           dispatch(updateStudentList(promise.data))

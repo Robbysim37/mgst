@@ -6,6 +6,8 @@ import {useState} from "react"
 import {Student} from "../../typeScriptDataTypes"
 import axios from "axios"
 import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
+import { downloadStudents } from "../../utils/downloadStudents"
+import { stringBuilder } from "../../utils/buildCSVstring"
 
 interface Props {
     setStudentModal:Function
@@ -30,6 +32,7 @@ interface Props {
     closeModal(e)
     axios.post('http://localhost:8000/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
+      downloadStudents("student-temp-passwords.csv",stringBuilder(response.data))
       axios.post<Array<Student>>("http://localhost:8000",{username,token})
       .then(promise => {
           dispatch(updateStudentList(promise.data))

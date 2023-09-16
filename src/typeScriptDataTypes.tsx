@@ -5,6 +5,13 @@ export type NewStudentInfo = {
     completedCourses?:string
 }
 
+export type StudentCSVObj = {
+    firstName:string,
+    lastName:string,
+    username:string,
+    password:string
+}
+
 export type BasicStudentInfo = {
     username:string,
     firstName:string,

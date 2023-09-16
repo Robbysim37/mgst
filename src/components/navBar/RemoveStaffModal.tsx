@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Box,Typography } from "@mui/material"
 import ReactDOM from "react-dom"
 import InfoCard from "../infoDisplayers/InfoCard"
+import GetStaffList from "../infoToDisplay/GetStaffList"
 
 const modalBG = {
     position:"fixed",
@@ -35,6 +36,9 @@ const RemoveStaffModal:React.FC<Props> = (props) => {
 
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
+      <InfoCard>
+        <GetStaffList/>
+      </InfoCard>
     </Box>,
     document.getElementById("portal")!
   )
