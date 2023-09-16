@@ -12,6 +12,11 @@ export type StudentCSVObj = {
     password:string
 }
 
+export type StaffCSVObj = {
+    username:string,
+    firstTimePassword:string
+}
+
 export type BasicStudentInfo = {
     username:string,
     firstName:string,

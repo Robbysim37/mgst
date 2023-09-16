@@ -9,6 +9,7 @@ const NavBar = () => {
 
     const username = window.sessionStorage.getItem("user")
     const navigate = useNavigate()
+    const userType = window.sessionStorage.getItem("type")
 
     const [addStaffModal,setAddStaffModal] = useState(false)
     const [removeStaffModal,setRemoveStaffModal] = useState(false)
@@ -37,6 +38,7 @@ const NavBar = () => {
         menuClose()
         window.sessionStorage.removeItem("token")
         window.sessionStorage.removeItem("user")
+        window.sessionStorage.removeItem("type")
         navigate("/")
     }   
 
@@ -55,8 +57,8 @@ const NavBar = () => {
                 <Box display={"flex"} justifyContent={"center"} alignItems={"center"}
                  height={"100%"} width={"25%"}>
                     <Menu anchorEl={anchorEl} onClose={menuClose} open={open} id={"student-menu"}>
-                        <MenuItem onClick={addStaff}>Add Staff</MenuItem>
-                        <MenuItem onClick={removeStaff} sx={{color:"red"}}>Delete Staff</MenuItem>
+                        {userType === "admin" && <MenuItem onClick={addStaff}>Add Staff</MenuItem>}
+                        {userType === "admin" && <MenuItem onClick={removeStaff} sx={{color:"red"}}>Delete Staff</MenuItem>}
                         <MenuItem onClick={logout} sx={{color:"red"}}>Logout</MenuItem>
                     </Menu>
                    {username && <Button color={"secondary"} onClick={usernmeClickHandler}>

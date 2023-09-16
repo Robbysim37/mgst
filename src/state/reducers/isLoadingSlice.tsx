@@ -5,13 +5,7 @@ export const isLoadingSlice = createSlice({
     initialState:false,
     reducers: {
         toggleIsLoading: (state, action:PayloadAction<boolean>) => {
-            console.log("payload = " + action.payload)
-
-            const test = action.payload === true ? state = true : state = false
-
-            console.log("outcome = " + test)
-
-            return test
+            return action.payload === true ? state = true : state = false
         }
     }
 })
