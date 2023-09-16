@@ -58,7 +58,7 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
             .then(promise => {
                 setDisabled(false)
                 dispatch(toggleIsLoading(false))
-                alert("Schedule updated Successfully!")
+                alert("Schedule updated successfully!")
             }).catch(error => {
                 setDisabled(false)
                 dispatch(toggleIsLoading(false))

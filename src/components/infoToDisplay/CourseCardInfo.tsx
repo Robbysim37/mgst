@@ -18,12 +18,12 @@ interface Props {
 
 const cardSubjectFont = {
     fontFamily:"serif",
-    fontSize:"1rem"
+    fontSize:".85rem"
 }
 
 const cardInfoFont = {
     fontFamily:"serif",
-    fontSize:"1rem",
+    fontSize:".75rem",
     margin:".8rem"
 }
 
