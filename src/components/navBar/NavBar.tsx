@@ -52,7 +52,7 @@ const NavBar = () => {
                 <Box height={"100%"} width={"25%"}></Box>
 
                 <Typography fontSize={"5vh"} textAlign={"center"}
-                 fontFamily={"serif"}>Magle Grove Student Tracker</Typography>
+                 fontFamily={"serif"}>Maple Grove Student Tracker</Typography>
 
                 <Box display={"flex"} justifyContent={"center"} alignItems={"center"}
                  height={"100%"} width={"25%"}>
