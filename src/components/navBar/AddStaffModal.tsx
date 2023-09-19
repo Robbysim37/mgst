@@ -1,8 +1,9 @@
-import { useEffect } from "react"
-import { Box,Typography } from "@mui/material"
+import { useEffect,useState } from "react"
+import { Box } from "@mui/material"
 import ReactDOM from "react-dom"
 import InfoCard from "../infoDisplayers/InfoCard"
 import AddStaffInfo from "../infoToDisplay/AddStaffInfo"
+import LoadingWheel from "../styledComponents/LoadingWheel"
 
 const modalBG = {
     position:"fixed",
@@ -24,6 +25,8 @@ interface Props {
 
 const AddStaffModal:React.FC<Props> = (props) => {
 
+  const [isLoading,setIsLoading] = useState(false)
+
   useEffect(() => {
     const close = (e:KeyboardEvent) => {
       if(e.keyCode === 27){
@@ -37,7 +40,10 @@ const AddStaffModal:React.FC<Props> = (props) => {
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
         <InfoCard>
-            <AddStaffInfo setAddStaffModal={props.setAddStaffModal}/>
+            {isLoading && <LoadingWheel position="static" height="100%" width="100%"/>}
+            {!isLoading && <AddStaffInfo 
+            setIsLoading={setIsLoading}
+            setAddStaffModal={props.setAddStaffModal}/>}
         </InfoCard>
     </Box>,
     document.getElementById("portal")!

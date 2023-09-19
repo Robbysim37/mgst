@@ -1,14 +1,20 @@
 import {TextField,Box,Typography,Stack,Button} from "@mui/material"
 import axios from "axios"
 import {useState} from "react"
+import { staffStringBuilder } from "../../utils/buildStaffCSVstring"
+import { downloadCredentials } from "../../utils/downloadCredentials"
+import { useAppDispatch,useAppSelector } from "../../state/store"
 
 interface Props {
-    setAddStaffModal:Function
+    setAddStaffModal:Function,
+    setIsLoading:Function
   }
 
 const AddStaffInfo:React.FC<Props> = (props) => {
 
   const [staffUsername,setStaffUsername] = useState("")
+  const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.isLoading)
 
   const closeAddStaff = (e:React.MouseEvent<HTMLButtonElement>) => {
     props.setAddStaffModal(false)
@@ -19,12 +25,21 @@ const AddStaffInfo:React.FC<Props> = (props) => {
   }
 
   const createStaff = (e:React.MouseEvent<HTMLButtonElement>) => {
+    props.setIsLoading(true)
     const username = window.sessionStorage.getItem("user")
     const token = window.sessionStorage.getItem("token")
-    axios.post("http://localhost/createStaff",{data:staffUsername,username,token})
+    axios.post("http://localhost:8000/createStaff",{data:staffUsername,username,token})
     .then(response => {
+      props.setIsLoading(false)
+
+      closeAddStaff(e)
+
       alert("Staff created successfully!")
+
+      downloadCredentials("staff-temp-password",staffStringBuilder(response.data))
+
     }).catch(err => {
+      props.setIsLoading(false)
       console.log(err)
     })
   }
@@ -40,7 +55,7 @@ const AddStaffInfo:React.FC<Props> = (props) => {
 
         <Stack direction={"row"} spacing={2}>
             <Button value="close" variant="outlined" onClick={closeAddStaff}>Cancel</Button>
-            <Button variant="contained">Submit</Button>
+            <Button variant="contained" onClick={createStaff}>Submit</Button>
         </Stack>
 
     </Box>

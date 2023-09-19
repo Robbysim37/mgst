@@ -1,9 +1,19 @@
-import LoadingWheel from "../styledComponents/LoadingWheel"
+import {Box,Typography} from "@mui/material"
 
 
-const GetStaffList = () =>  {
+interface Props {
+  staff:[string] | null
+}
+
+const GetStaffList:React.FC<Props> = (props) =>  {
+
   return (
-    <LoadingWheel position="static" height="100%" width="100%"/>
+    <Box height={"100%"} width={"100%"}>
+      {props.staff !== null && props.staff.map( currStaff => {
+        return <Typography key={Math.random()}>{currStaff}</Typography>
+      }
+      )}
+    </Box>
   )
 }
 

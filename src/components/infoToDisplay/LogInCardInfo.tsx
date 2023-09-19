@@ -22,7 +22,8 @@ const LogInCardInfo = () => {
     axios.post("http://localhost:8000/staffLogin",logIn)
     .then(promise => {
       window.sessionStorage.setItem("token",promise.data.token)
-      window.sessionStorage.setItem("user",logIn.username)
+      window.sessionStorage.setItem("user",promise.data.username)
+      window.sessionStorage.setItem("type",promise.data.type)
       navigate("/staff")
     })
     .catch(error => {
