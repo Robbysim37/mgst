@@ -1,4 +1,5 @@
-import {Box,Typography} from "@mui/material"
+import {Stack,Typography} from "@mui/material"
+import StaffCard from "../infoDisplayers/StaffCard"
 
 
 interface Props {
@@ -8,12 +9,12 @@ interface Props {
 const GetStaffList:React.FC<Props> = (props) =>  {
 
   return (
-    <Box height={"100%"} width={"100%"}>
+    <Stack height={"100%"} width={"100%"} alignItems={"center"} spacing={2}>
       {props.staff !== null && props.staff.map( currStaff => {
-        return <Typography key={Math.random()}>{currStaff}</Typography>
+        return <StaffCard key={Math.random()}>{currStaff}</StaffCard>
       }
       )}
-    </Box>
+    </Stack>
   )
 }
 
