@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../../state/store"
 import { deleteStudent } from "../../state/reducers/studentsSlice"
 import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
+import { downloadCredentials } from "../../utils/downloadCredentials"
+import { stringBuilder } from "../../utils/buildCSVstring"
 
 interface Props {
     
@@ -42,6 +44,23 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
     })
   }
 
+  const resetStudentPassword = (e:React.MouseEvent<HTMLLIElement>) => {
+    setAnchorEl(null)
+    const token = window.sessionStorage.getItem("token")
+    const username = window.sessionStorage.getItem("user")
+    dispatch(toggleIsLoading(true))
+    axios.put('http://localhost:8000/resetPassword',{data:props.student.username,token,username})
+    .then(response => {
+      dispatch(toggleIsLoading(false))
+      console.log(response.data)
+      downloadCredentials("student-new-Password.csv",stringBuilder(response.data))
+    }).catch(err => {
+      dispatch(toggleIsLoading(false))
+      console.log(err)
+      alert("An error has occured")
+    })
+  }
+
   const returnToStaffView = (e:React.MouseEvent<HTMLButtonElement>) => {
     navigate("/staff")
   }
@@ -53,6 +72,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
   return (
     <Stack height="50%" display={"flex"} alignItems={"center"}>
       <Menu anchorEl={anchorEl} onClose={menuClose} open={open} id={"student-menu"}>
+        <MenuItem onClick={resetStudentPassword}>Reset Password</MenuItem>
         <MenuItem onClick={deleteStudentClickHandler} sx={{color:"red"}}>Delete Student</MenuItem>
       </Menu>
       <Stack direction={"row"} justifyContent={"space-between"} width={"90%"} height={"15%"}>

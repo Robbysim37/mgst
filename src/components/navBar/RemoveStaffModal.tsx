@@ -56,9 +56,11 @@ const RemoveStaffModal:React.FC<Props> = (props) => {
 
   return ReactDOM.createPortal(
     <Box sx={modalBG}>
-      <InfoCard>
+      <InfoCard color="primary.light" display="flex" 
+      justifyContent="center" alignItems="center">
         {isLoading && <LoadingWheel position="static" height="100%" width="100%"/>}
-        {!isLoading && <GetStaffList staff={staff}/>}
+        {!isLoading && <GetStaffList staff={staff} 
+        setRemoveStaffModal={props.setRemoveStaffModal} setIsLoading={setIsLoading}/>}
       </InfoCard>
     </Box>,
     document.getElementById("portal")!
