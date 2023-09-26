@@ -58,7 +58,7 @@ const NavBar = () => {
                  height={"100%"} width={"25%"}>
                     <Menu anchorEl={anchorEl} onClose={menuClose} open={open} id={"student-menu"}>
                         {userType === "admin" && <MenuItem onClick={addStaff}>Add Staff</MenuItem>}
-                        {userType === "admin" && <MenuItem onClick={removeStaff} sx={{color:"red"}}>Delete Staff</MenuItem>}
+                        {userType === "admin" && <MenuItem onClick={removeStaff}>Staff</MenuItem>}
                         <MenuItem onClick={logout} sx={{color:"red"}}>Logout</MenuItem>
                     </Menu>
                    {username && <Button color={"secondary"} onClick={usernmeClickHandler}>
