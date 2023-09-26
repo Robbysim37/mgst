@@ -26,8 +26,8 @@ const LogInCardInfo = () => {
       window.sessionStorage.setItem("type",promise.data.type)
       navigate("/staff")
     })
-    .catch(error => {
-      console.log(error)
+    .catch(err => {
+      alert(`${err.response.data}`)
       dispatch(toggleIsLoading(false))
     })
   }

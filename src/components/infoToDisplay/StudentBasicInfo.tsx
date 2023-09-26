@@ -57,7 +57,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
     }).catch(err => {
       dispatch(toggleIsLoading(false))
       console.log(err)
-      alert("An error has occured")
+      alert("An error has occurred")
     })
   }
 

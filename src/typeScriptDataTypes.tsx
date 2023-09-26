@@ -14,7 +14,7 @@ export type StudentCSVObj = {
 
 export type StaffCSVObj = {
     username:string,
-    firstTimePassword:string
+    password:string
 }
 
 export type BasicStudentInfo = {
