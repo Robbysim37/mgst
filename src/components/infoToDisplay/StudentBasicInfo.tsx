@@ -52,7 +52,6 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
     axios.put('http://localhost:8000/resetPassword',{data:props.student.username,token,username})
     .then(response => {
       dispatch(toggleIsLoading(false))
-      console.log(response.data)
       downloadCredentials("student-new-Password.csv",stringBuilder(response.data))
     }).catch(err => {
       dispatch(toggleIsLoading(false))

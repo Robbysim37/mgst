@@ -4,7 +4,7 @@ import axios from "axios"
 import React, {useState} from "react"
 import { useAppDispatch,useAppSelector } from "../../state/store"
 import { toggleIsLoading } from "../../state/reducers/isLoadingSlice"
-import LoadingWheel from "../styledComponents/LoadingWheel"
+import { storeUserToState } from "../../state/reducers/userSlice"
 
 const LogInCardInfo = () => {
 
@@ -21,6 +21,7 @@ const LogInCardInfo = () => {
     dispatch(toggleIsLoading(true))
     axios.post("http://localhost:8000/staffLogin",logIn)
     .then(promise => {
+      dispatch(storeUserToState(promise.data))
       window.sessionStorage.setItem("token",promise.data.token)
       window.sessionStorage.setItem("user",promise.data.username)
       window.sessionStorage.setItem("type",promise.data.type)

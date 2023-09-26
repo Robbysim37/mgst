@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import {Student,BasicStudentInfo,CourseIndexCode,CourseIdentifier} from "../../typeScriptDataTypes"
 
-export interface studentInitialState {
+interface studentInitialState {
     students: Array<Student> | null
 }
 
