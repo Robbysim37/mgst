@@ -20,6 +20,27 @@ const modalBG = {
 
 const ResetPasswordModal = () => {
 
+    const [passwordComparison,setPasswordComparison] = useState({
+        newPassword:"",
+        confirmNewPassword:""
+    })
+
+    const passwordInputChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setPasswordComparison({...passwordComparison,[`${e.target.id}`]:e.target.value})
+    }
+
+    const validPassword = () => {
+        if(passwordComparison.newPassword && passwordComparison.confirmNewPassword){
+            if(passwordComparison.newPassword === passwordComparison.confirmNewPassword){
+                return false
+            }else{
+                return true
+            }
+        }else{
+            return true
+        }
+    }
+
     return ReactDOM.createPortal(
     <Box sx={modalBG}>
       <InfoCard color="primary.light" display="flex" direction="column"
@@ -27,14 +48,24 @@ const ResetPasswordModal = () => {
         <Box height={"100%"} width={"100%"} display={"flex"} flexDirection={"column"}
         alignItems={"center"}>
             <Stack alignItems={"center"} width={"50%"} margin={"1rem"}>
-                <Typography>New Password:</Typography>
-                <TextField sx={{backgroundColor:"white",borderRadius:"5px"}}></TextField>
+
+                <Typography>New Password</Typography>
+
+                <TextField value={passwordComparison.newPassword} type="password"
+                id={"newPassword"} onChange={passwordInputChangeHandler}
+                sx={{backgroundColor:"white",borderRadius:"5px"}}></TextField>
+
             </Stack>
             <Stack alignItems={"center"} width={"50%"} margin={"1rem"}>
+
                 <Typography>Confirm New Password</Typography>
-                <TextField sx={{backgroundColor:"white",borderRadius:"5px"}}></TextField>
+
+                <TextField value={passwordComparison.confirmNewPassword} type="password"
+                id={"confirmNewPassword"} onChange={passwordInputChangeHandler}
+                sx={{backgroundColor:"white",borderRadius:"5px"}}></TextField>
+
             </Stack>
-            <Button variant="contained" sx={{width:"20%"}}>Submit</Button>
+            <Button variant="contained" disabled={validPassword()} sx={{width:"20%"}}>Submit</Button>
         </Box>
       </InfoCard>
     </Box>,
