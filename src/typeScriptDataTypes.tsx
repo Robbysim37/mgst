@@ -24,6 +24,13 @@ export type BasicStudentInfo = {
     cohort:number
 }
 
+export type StaffUserObj = {
+    username:string,
+    needsPasswordReset:boolean,
+    type:string,
+    token:string
+}
+
 export type Course = {
     name: string,
     creditType: string,

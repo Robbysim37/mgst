@@ -12,6 +12,7 @@ interface Props {
     height?: string;
     width?: string;
     display?: string;
+    direction?: string;
     className?: "studentCard" | "courseCard";
 }
 

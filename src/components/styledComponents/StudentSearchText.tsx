@@ -18,7 +18,6 @@ const StudentSearchText: React.FC<Props> = (props) => {
 
     const searchByName = (e:React.ChangeEvent<HTMLInputElement>) => {
         props.setFilters({...props.filters,[`${props.id}`]:e.target.value})
-        console.log(props.filters)
     }
 
     return(
