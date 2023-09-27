@@ -15,8 +15,13 @@ export const userSlice = createSlice({
     reducers:{
         storeUserToState: (state,action:PayloadAction<StaffUserObj>) => {
             state.user = action.payload
+        },
+        removePasswordReset: (state,action:PayloadAction<boolean>) => {
+            if(state.user){
+               state.user.needsPasswordReset = action.payload
+            }
         }
     }
 })
 
-export const {storeUserToState} = userSlice.actions
+export const {storeUserToState,removePasswordReset} = userSlice.actions
