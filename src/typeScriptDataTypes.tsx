@@ -1,3 +1,5 @@
+import { type } from "os"
+
 export type NewStudentInfo = {
     firstName:string,
     lastName:string,
@@ -44,6 +46,14 @@ export type CourseIdentifier = {
     yearIndex: number,
     trimesterIndex: number,
     courseIndex: number
+}
+
+export type CourseIdentifierWithNotes ={
+    username: string | undefined,
+    yearIndex: number,
+    trimesterIndex: number,
+    courseIndex: number,
+    notes:string
 }
 
 export type Trimester = Array<Course>

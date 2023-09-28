@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {Student,BasicStudentInfo,CourseIndexCode,CourseIdentifier} from "../../typeScriptDataTypes"
+import {Student,BasicStudentInfo,CourseIndexCode,CourseIdentifier
+,CourseIdentifierWithNotes} from "../../typeScriptDataTypes"
 
 interface studentInitialState {
     students: Array<Student> | null
@@ -54,6 +55,21 @@ export const studentSlice = createSlice({
                 })
             }
         },
+        editNotes: (state,action:PayloadAction<CourseIdentifierWithNotes>) => {
+            if(state.students){
+                state.students = state.students.map(currStudent => {
+                    if(currStudent.username === action.payload.username){
+                        currStudent.schedule
+                        [action.payload.yearIndex]
+                        [action.payload.trimesterIndex]
+                        [action.payload.courseIndex].notes = action.payload.notes
+                        return currStudent
+                    }else{
+                        return currStudent
+                    }
+                })
+            }
+        },
         swapCourses: (state,action:PayloadAction<CourseIndexCode>) => {
             if(state.students && action.payload.username){
 
@@ -87,4 +103,5 @@ export const {
     updateStudent,
     updateCourseCompletion,
     swapCourses,
-    deleteStudent } = studentSlice.actions
+    deleteStudent,
+    editNotes } = studentSlice.actions

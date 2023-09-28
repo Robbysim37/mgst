@@ -3,6 +3,8 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material"
 import axios from "axios"
 import ReactDOM from "react-dom"
 import InfoCard from "../infoDisplayers/InfoCard"
+import { useAppDispatch } from "../../state/store"
+import { removePasswordReset } from "../../state/reducers/userSlice"
 
 const modalBG = {
     position:"fixed",
@@ -20,6 +22,7 @@ const modalBG = {
 
 const ResetPasswordModal = () => {
 
+    const dispatch = useAppDispatch()
     const [passwordComparison,setPasswordComparison] = useState({
         newPassword:"",
         confirmNewPassword:""
@@ -39,6 +42,21 @@ const ResetPasswordModal = () => {
         }else{
             return true
         }
+    }
+
+    const submitPasswordClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+        const username = window.sessionStorage.getItem("user")
+        const token = window.sessionStorage.getItem("token")
+        axios.put("http://localhost:8000/changeStaffPassword",
+        {data:passwordComparison.newPassword,username,token})
+        .then(response => {
+            alert("Password Changed Successfully ")
+            dispatch(removePasswordReset(false))
+        })
+        .catch(err => {
+            alert("An error has occurred")
+            console.log(err)
+        })
     }
 
     return ReactDOM.createPortal(
@@ -65,7 +83,8 @@ const ResetPasswordModal = () => {
                 sx={{backgroundColor:"white",borderRadius:"5px"}}></TextField>
 
             </Stack>
-            <Button variant="contained" disabled={validPassword()} sx={{width:"20%"}}>Submit</Button>
+            <Button variant="contained" disabled={validPassword()} sx={{width:"20%"}}
+            onClick={submitPasswordClickHandler}>Submit</Button>
         </Box>
       </InfoCard>
     </Box>,
