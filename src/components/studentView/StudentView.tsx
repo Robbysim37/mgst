@@ -28,7 +28,6 @@ export default function StudentView() {
   }
 
   return (
-    <>
     <Stack sx={{height:"100%",width:"100%"}}>
       <Box sx={{height:"10%"}}>
         <Button onClick={viewChangeHandler} id="details">Details</Button>
@@ -42,6 +41,5 @@ export default function StudentView() {
           { currentView === "schedule" && student && <ScheduleDisplay schdeule={student.schedule}></ScheduleDisplay>}
         </Stack>
     </Stack>
-    </>
   )
 }
