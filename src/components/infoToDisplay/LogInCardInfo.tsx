@@ -28,7 +28,7 @@ const LogInCardInfo = () => {
       navigate("/staff")
     })
     .catch(err => {
-      alert(`${err.response.data}`)
+      alert(`${err.data}`)
       dispatch(toggleIsLoading(false))
     })
   }
