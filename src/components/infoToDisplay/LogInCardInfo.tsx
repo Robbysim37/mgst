@@ -19,7 +19,7 @@ const LogInCardInfo = () => {
 
   const logInClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
     dispatch(toggleIsLoading(true))
-    axios.post("http://mgst-backend.vercel.app/staffLogin",logIn)
+    axios.post("https://mgst-backend.vercel.app/staffLogin",logIn)
     .then(promise => {
       dispatch(storeUserToState(promise.data))
       window.sessionStorage.setItem("token",promise.data.token)

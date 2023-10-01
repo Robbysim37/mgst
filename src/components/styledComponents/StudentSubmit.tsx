@@ -30,10 +30,10 @@ interface Props {
     const token = window.sessionStorage.getItem("token")
     setDisabledBool(true)
     closeModal(e)
-    axios.post('http://mgst-backend.vercel.app/newStudents',{data:props.newStudentInfoArray,token,username})
+    axios.post('https://mgst-backend.vercel.app/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
       downloadCredentials("student-temp-passwords.csv",stringBuilder(response.data))
-      axios.post<Array<Student>>("http://mgst-backend.vercel.app",{username,token})
+      axios.post<Array<Student>>("https://mgst-backend.vercel.app",{username,token})
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })

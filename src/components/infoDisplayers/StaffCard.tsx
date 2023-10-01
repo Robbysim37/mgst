@@ -29,7 +29,7 @@ const StaffCard:React.FC<Props> = (props) => {
   const deleteStaffClickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     menuClose()
     props.setIsLoading(true)
-    axios.delete('http://mgst-backend.vercel.app/deleteStaff',{data:{data:{data:props.children,token,username}}})
+    axios.delete('https://mgst-backend.vercel.app/deleteStaff',{data:{data:{data:props.children,token,username}}})
     .then(response => {
       props.setRemoveStaffModal(false)
       alert(`${response.data}`)
@@ -41,7 +41,7 @@ const StaffCard:React.FC<Props> = (props) => {
   const resetStaffPasswordClickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     menuClose()
     props.setIsLoading(true)
-    axios.put(`http://mgst-backend.vercel.app/resetStaffPassword`,{data:props.children,token,username})
+    axios.put(`https://mgst-backend.vercel.app/resetStaffPassword`,{data:props.children,token,username})
     .then(response => {
       downloadCredentials("new-staff-password.csv",staffStringBuilder(response.data))
       alert("Staff password reset successful")

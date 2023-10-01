@@ -45,7 +45,7 @@ const StudentBasicInfoEdit:React.FC<Props> = (props) => {
       lastName:studentForm.lastName,
       cohort:studentForm.cohort,
     }
-    axios.put('http://mgst-backend.vercel.app/editStudentInfo',{data:updatedInfo,token,username})
+    axios.put('https://mgst-backend.vercel.app/editStudentInfo',{data:updatedInfo,token,username})
     .then(promise => {
       dispatch(updateStudent(updatedInfo))
       props.setEditView(false)

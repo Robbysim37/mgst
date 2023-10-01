@@ -47,7 +47,7 @@ const ResetPasswordModal = () => {
     const submitPasswordClickHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
         const username = window.sessionStorage.getItem("user")
         const token = window.sessionStorage.getItem("token")
-        axios.put("http://mgst-backend.vercel.app/changeStaffPassword",
+        axios.put("https://mgst-backend.vercel.app/changeStaffPassword",
         {data:passwordComparison.newPassword,username,token})
         .then(response => {
             alert("Password Changed Successfully ")
