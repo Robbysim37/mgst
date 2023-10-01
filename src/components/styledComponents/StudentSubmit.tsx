@@ -18,7 +18,6 @@ interface Props {
 
   const [disabledBool,setDisabledBool] = useState(false)
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(state => state.isLoading)
 
   const closeModal = (e:React.MouseEvent<HTMLButtonElement>) => {
     props.setStudentModal(false)
@@ -33,14 +32,24 @@ interface Props {
     axios.post('https://mgst-backend.vercel.app/newStudents',{data:props.newStudentInfoArray,token,username})
     .then(response => {
       downloadCredentials("student-temp-passwords.csv",stringBuilder(response.data))
+      console.log("hits the download credentials")
+      dispatch(toggleIsLoading(false))
       axios.post<Array<Student>>("https://mgst-backend.vercel.app",{username,token})
       .then(promise => {
+          console.log("gets the All Students data back")
           dispatch(updateStudentList(promise.data))
+          props.setStudentModal(false)
+      }).catch(err => {
+        console.log("This is the `All Students` catch")
+        console.log(err)
+        alert("An error has occurred")
       })
-      props.setStudentModal(false)
     })
-    .catch(response => {
+    .catch(response => { 
+      dispatch(toggleIsLoading(false))
       console.log(response)
+      console.log("This is the `Post Students` catch")
+      alert("An error has occurred")
     });
 
   }
