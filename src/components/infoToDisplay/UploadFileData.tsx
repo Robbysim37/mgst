@@ -49,10 +49,10 @@ const UploadFileData:React.FC<Props> = (props) => {
     const username = window.sessionStorage.getItem("user")
     dispatch(toggleIsLoading(true))
     closeModal(e)
-    axios.post('http://localhost:8000/newStudents',{data:excelData,username,token})
+    axios.post('http://mgst-backend.vercel.app/newStudents',{data:excelData,username,token})
     .then(response => {
       downloadCredentials("student-temp-passwords.csv",stringBuilder(response.data))
-      axios.post<Array<Student>>("http://localhost:8000",{token,username})
+      axios.post<Array<Student>>("http://mgst-backend.vercel.app",{token,username})
       .then(promise => {
           dispatch(updateStudentList(promise.data))
       })

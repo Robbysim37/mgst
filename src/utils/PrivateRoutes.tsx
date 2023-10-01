@@ -15,7 +15,7 @@ const PrivateRoutes = () => {
             navigate("/")
             setIsAuth(false)
         }else{
-            axios.post("http://localhost:8000/checkToken",{username:sessionUser,token:sessionToken})
+            axios.post("http://mgst-backend.vercel.app/checkToken",{username:sessionUser,token:sessionToken})
             .then(promise => {
                 if(promise.data === true){
                     setIsAuth(true)

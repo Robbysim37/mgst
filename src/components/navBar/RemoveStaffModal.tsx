@@ -33,7 +33,7 @@ const RemoveStaffModal:React.FC<Props> = (props) => {
     setIsLoading(true)
     const username = window.sessionStorage.getItem("user")
     const token = window.sessionStorage.getItem("token")
-    axios.post("http://localhost:8000/getStaff",{username,token})
+    axios.post("http://mgst-backend.vercel.app/getStaff",{username,token})
     .then(response => {
       setIsLoading(false)
       setStaff(response.data)

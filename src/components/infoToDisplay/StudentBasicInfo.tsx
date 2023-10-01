@@ -36,7 +36,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
     dispatch(toggleIsLoading(true))
-    axios.delete('http://localhost:8000/deleteStudent',{data:{data:{data:props.student.username,token,username}}}).then(res => {
+    axios.delete('http://mgst-backend.vercel.app/deleteStudent',{data:{data:{data:props.student.username,token,username}}}).then(res => {
       dispatch(deleteStudent(props.student))
       navigate("/staff")
     }).catch(response => {
@@ -49,7 +49,7 @@ const StudentBasicInfo:React.FC<Props> = (props) => {
     const token = window.sessionStorage.getItem("token")
     const username = window.sessionStorage.getItem("user")
     dispatch(toggleIsLoading(true))
-    axios.put('http://localhost:8000/resetPassword',{data:props.student.username,token,username})
+    axios.put('http://mgst-backend.vercel.app/resetPassword',{data:props.student.username,token,username})
     .then(response => {
       dispatch(toggleIsLoading(false))
       downloadCredentials("student-new-Password.csv",stringBuilder(response.data))

@@ -28,7 +28,7 @@ const AddStaffInfo:React.FC<Props> = (props) => {
     props.setIsLoading(true)
     const username = window.sessionStorage.getItem("user")
     const token = window.sessionStorage.getItem("token")
-    axios.post("http://localhost:8000/createStaff",{data:staffUsername,username,token})
+    axios.post("http://mgst-backend.vercel.app/createStaff",{data:staffUsername,username,token})
     .then(response => {
       props.setIsLoading(false)
 

@@ -54,7 +54,7 @@ const ScheduleDisplay:React.FC<Props> = (props) => {
             const sendingStudent = students.filter(currStudent => {
                 return currStudent.username === studentUsername ? true : false
             })[0]
-            axios.put('http://localhost:8000/updateCourseOrder',{data:sendingStudent,token,username})
+            axios.put('http://mgst-backend.vercel.app/updateCourseOrder',{data:sendingStudent,token,username})
             .then(promise => {
                 setDisabled(false)
                 dispatch(toggleIsLoading(false))
